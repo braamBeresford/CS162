@@ -1,0 +1,108 @@
+#include "state_facts.h"
+
+using namespace std;
+
+
+void get_all_states(state * states, int num_states, fstream &f) {
+	for (int i = 0; i < num_states; i++)
+		get_state_data(states, i, f);
+}
+
+state * create_states(int num_states) {
+	state * states = new state[num_states];
+	return states;
+}
+
+void get_state_data(state * states, int curr_state, fstream & f) {
+	string name;
+	int pop;
+	int counties; // Number of counties
+	f >> name >> pop >> counties;
+	states[curr_state].name = name;
+	states[curr_state].population = pop;
+	states[curr_state].counties = counties;
+	states[curr_state].c = create_counties(counties);
+	get_county_data(states[curr_state].c, counties, f);
+
+}
+
+county * create_counties(int num_counties) {
+	county * counties = new county[num_counties];
+	return counties;
+}
+
+void get_county_data(county * c, int num_counties, fstream &f) {
+	for (int current = 0; current < num_counties; current++) {
+		string name;
+		int cities, population;
+		float avg_income, avg_house;
+		f >> name >> population >> avg_income >> avg_house >> cities;
+		c[current].name = name;
+		c[current].cities = cities;
+		c[current].population = population;
+		c[current].avg_income = avg_income;
+		c[current].avg_house = avg_house;
+		c[current].city = new string [cities];
+
+		for (int i = 0; i < cities; i++)
+			f >> c[current].city[i];
+	}
+}
+
+
+void print_state(state * states, int curr_state) {
+	cout << states[curr_state].name << " Population: " << states[curr_state].population;
+	cout << " Number of counties: " << states[curr_state].counties << endl;
+}
+
+
+void print_all_states(state * states, int num_states, bool include_counties) {
+	putchar('\n');
+	if (!include_counties)
+		for (int i = 0; i < num_states; i++)
+			print_state(states, i);
+
+
+
+	else
+		for (int i = 0; i < num_states; i++) {
+			print_state(states, i);
+			putchar('\n');
+			print_all_counties(states, i);
+			putchar('\n');
+		}
+
+
+}
+
+
+void print_all_counties(state * states, int curr_state) {
+	county * c = states[curr_state].c;
+	cout << "Counties: " << endl;
+	for (int current = 0; current < states[curr_state].counties; current++) {
+		cout << c[current].name << " " << c[current].population << " " << c[current].avg_income;
+		putchar(' ');
+		cout << c[current].avg_house << ' ' << c[current].cities << endl;
+	}
+}
+
+void delete_info(state * states , int num_states){
+	int i =0;
+	// while(i < num_states){
+	// 	cout << "i: " << i << ' ' << states[0][i].name << endl;
+	// 	i++;
+	// }
+
+	for(int i = 0; i < num_states; i++){
+		
+		for(int j = 0; j < states[i].counties; j++){
+
+			delete [] states[i].c[j].city;
+		}
+		delete [] states[i].c;
+		
+	}
+	delete [] states;
+	// states = NULL;
+
+}
