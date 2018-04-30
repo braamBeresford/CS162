@@ -58,12 +58,16 @@ void user_choice(Restaurant &r){
         getline(cin, input);
         if(input == "C")
             customer_selection(r);
-        else if(input == "E")
+        else if(input == "E"){
+            r.validate_login(r) ;
             employee_selection(r);
+        }
         else
             return;
     }
 }
+
+
 void print_employee_selection() {
     // system("clear");
     printf("Welcome dedicated employee \n");
@@ -152,7 +156,7 @@ void customer_selection(Restaurant & r) {
         case 5: r.view_hours(); break;
         case 6: printf("ADDRESS: \n"); r.view_address(); putchar('\n'); break;
         case 7:  printf("PHONE:\n"); r.view_phone(); putchar('\n'); break;
-        case 8: cout << "Nothing here"  << endl; break;
+        case 8: return; break;
         default: cout << "I don't understnad what you're saying" << endl; break;
 
         }

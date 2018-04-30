@@ -8,13 +8,14 @@
 class Restaurant {
 private:
     Menu menu;
+    int num_employees;
     employee * employees;
     int num_days;
     hours * week;
     string name;
     string phone;
     string address;
-    int num_employees;
+    
 
 public:
     //Constructors
@@ -30,8 +31,7 @@ public:
     int return_num_employees() const;
     void view_employees() const;
     void view_menu() const;
-    
-
+    bool validate_login(Restaurant &r) const;
 
 
 

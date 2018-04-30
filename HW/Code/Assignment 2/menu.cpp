@@ -72,11 +72,13 @@ void Menu::add_item_to_menu(){
     printf("What would you like to call your pizza? ");
    	getline(cin, name);
     p.set_name(name);
-
+	
+	do{
     printf("\nPrice for a small: ");
 	getline(cin, input);
     small = get_int(input);
     p.set_small_cost(small);
+	}while(true);
 
     printf("\nPrice for a medium: ");
 	getline(cin, input);
@@ -128,7 +130,6 @@ void Menu::remove_iterm_from_menu(){
 
 			temp = pizzas[i].get_name();
 			if(temp == input){
-				cout << "this shoudlnt work\n";
 				index = i;
 				valid = true;
 				break;
@@ -140,7 +141,6 @@ void Menu::remove_iterm_from_menu(){
 		getline(cin, input);
 	}
 	
-	
 	for(int i = index; i < this->num_pizzas; i++){
 		if(i+1 == this-> num_pizzas){
 			continue;
@@ -150,5 +150,4 @@ void Menu::remove_iterm_from_menu(){
 	}
 	// pizzas[this->num_pizzas-1] = NULL;
 	this->num_pizzas--;
-
 }

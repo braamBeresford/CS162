@@ -47,6 +47,39 @@ void Restaurant::view_menu() const{
     menu.view_menu();
 }
 
+bool Restaurant::validate_login(Restaurant &r) const{
+    string input = "";
+    bool valid = false;
+    do{
+        printf("Username: \n");
+        getline(cin, input);
+        for(int i =0; i < r.return_num_employees(); i++){
+            if(employees[i].id == input){
+                valid = true;
+                break;
+            }
+        }
+        
+        printf("Please input a valid username\n");
+
+    } while(!valid);
+    valid = false;
+    do{
+        printf("Password: \n");
+        getline(cin, input);
+        for(int i =0; i < r.return_num_employees(); i++){
+            if(employees[i].password == input){
+                valid = true;
+                break;
+            }
+
+            printf("Please input a valid password\n");
+        }
+    } while(!valid);
+
+    return true;
+}
+
 
 //Mutators
 void Restaurant::set_name(string new_name) {name = new_name;}
@@ -119,7 +152,6 @@ int Restaurant::verify_week_day(string input){
  ** Post-Conditions: Fills already created employee array;
  *********************************************************************/
 void Restaurant::get_employees(fstream &f) {
-    cout << "IM HERE!" << endl;
     for (int i = 0; i < num_employees; i++)
         f >> employees[i].id >> employees[i].first_name >> employees[i].last_name >> employees[i].password;
 }
