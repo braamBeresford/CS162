@@ -59,7 +59,7 @@ void user_choice(Restaurant &r){
         if(input == "C")
             customer_selection(r);
         else if(input == "E"){
-            r.validate_login(r) ;
+            r.validate_login(r);
             employee_selection(r);
         }
         else
@@ -113,6 +113,9 @@ void employee_selection(Restaurant & r) {
 
     } while (!logout);
 }
+
+Menu Menu::search_pizza_by_cost(int upper_bound, string size);
+
 
 void remove_underscores(string * arr, int length){
     for(int i =0; i < length; i++)
