@@ -9,7 +9,9 @@ class Restaurant {
 private:
     Menu menu;
     int num_employees;
+    int num_orders;
     employee * employees;
+    order * orders;
     int num_days;
     hours * week;
     string name;
@@ -32,7 +34,7 @@ public:
     void view_employees() const;
     void view_menu() const;
     bool validate_login(Restaurant &r) const;
-
+    void search_by_cost();
 
 
     //Mutators
@@ -46,6 +48,9 @@ public:
     int verify_week_day(string input);
     void add_item_to_menu();
     void remove_iterm_from_menu();
+    void get_orders(fstream &f);
+    void place_order();
+
 
     // To Do
     bool login(string id, string password);

@@ -11,6 +11,7 @@
 #define REST_NAME "restaurant_info.txt"
 #define MENU_NAME "menu.txt"
 #define EMP_NAME "employee.txt"
+#define ORD_NAME "orders.txt"
 
 using namespace std;
 
@@ -34,16 +35,7 @@ struct fileLengths{
     int menu;
 };
 
-struct order{
-    string order_num;
-    string customer;
-    string credit_card;
-    string address;
-    string phone; 
-    string pizza;
-    int quantity;
 
-};
 
 #include "restaurant.hpp"
 

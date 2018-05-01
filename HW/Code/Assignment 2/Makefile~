@@ -1,4 +1,4 @@
-CC = g++ -g
+CC = g++
 exe_file = assignment2
 
 $(exe_file): driver.o menu.o pizza.o restaurant.o driver_functions.o

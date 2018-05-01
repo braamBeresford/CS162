@@ -12,7 +12,9 @@ Pizza::Pizza() {
 
 
 Pizza::~Pizza(){
-	delete [] ingredients;
+	if(ingredients != NULL)
+		delete [] ingredients;
+	ingredients = NULL;
 }
 
 Pizza::Pizza(const Pizza& pie) {

@@ -9,7 +9,9 @@ Menu::Menu() {
 }
 
 Menu::~Menu(){
-	delete [] pizzas;
+	if(pizzas != NULL)
+		delete [] pizzas;
+	pizzas = NULL;
 }
 
 
@@ -33,6 +35,65 @@ void Menu::view_ingredients(int index) const {
 	delete [] temp;
 	putchar('\n');
 }
+
+
+int Menu::get_cost(int index, string size) const{
+	if(size == "small")
+		return pizzas[index].get_small_cost();
+		
+	else if(size == "medium")
+		return pizzas[index].get_medium_cost();
+	
+	else
+		return pizzas[index].get_large_cost();
+		
+}
+
+Menu Menu::search_pizza_by_cost(int upper_bound, string size){
+	Menu searched;
+	searched = *this;
+
+	for(int i =0; i < searched.num_pizzas; i++){
+		if(searched.get_cost(i, size) > upper_bound){
+			searched.remove_item_at_index(i);
+			i--;
+		}
+	}
+    return searched;
+}
+
+
+void Menu::remove_item_at_index(int index){
+	for(int i = index; i < this->num_pizzas; i++){
+		if(i+1 == this-> num_pizzas){
+			continue;
+		}
+		else
+			pizzas[i] = pizzas[i+1];
+	}
+	// pizzas[this->num_pizzas-1] = NULL;
+	this->num_pizzas--;
+}
+
+
+Menu & Menu::operator=(const Menu & m) {
+	this->num_pizzas = m.num_pizzas;
+	if(pizzas!= NULL)
+		delete [] pizzas;
+	
+	if(num_pizzas==0)
+		pizzas = NULL;
+	
+	else{
+		pizzas = new Pizza[this->num_pizzas];
+		for(int i = 0; i < num_pizzas; i++){
+			this->pizzas[i] = m.pizzas[i];
+		}
+	}
+
+	return *this;
+}
+
 
 //Mutators
 void Menu::load_data() {
@@ -73,12 +134,12 @@ void Menu::add_item_to_menu(){
    	getline(cin, name);
     p.set_name(name);
 	
-	do{
-    printf("\nPrice for a small: ");
+	
+	printf("\nPrice for a small: ");
 	getline(cin, input);
-    small = get_int(input);
-    p.set_small_cost(small);
-	}while(true);
+	small = get_int(input);
+	p.set_small_cost(small);
+	
 
     printf("\nPrice for a medium: ");
 	getline(cin, input);
@@ -104,13 +165,91 @@ void Menu::add_item_to_menu(){
     }
 
     p.fill_ingredients_arr(num_ingredients, temp);
-
+	num_pizzas++;
     pizzas[num_pizzas-1] = p;
 }
 
+void Menu::place_order(order & temp){
+	string input = "";
+	bool valid = false;
+    printf("What pizza would you like?\n");
+    while(!valid){
+        getline(cin, input);
+		if(input == "Q" || input == "q")
+			return;
+
+        for(int i =0; i < input.length(); i++)
+		    if(input[i] == ' ')
+			    input[i] = '_';
+  
+        for(int i =0; i < this->num_pizzas; i++){
+            if(input == pizzas[i].get_name())
+				valid = true;
+        }
+		if(!valid)
+			printf("We don't appear to have that pizza, re-enter or press Q to exit\n");
+    }
+	temp.pizza = input;
+	valid = false;
+	printf("What size would you like? (large, medium, or small) ");
+	while(!valid){
+		getline(cin, input);
+		if(input == "small" || input == "Small"){
+			temp.size = "S";
+			valid = true;
+		}
+		
+		else if(input == "medium" || input == "Medium"){
+			temp.size = "M";
+			valid = true;
+		}
+		else if(input == "large" || input == "Large"){
+			temp.size = "L";
+			valid = true;
+		}
+		if(!valid)
+			printf("We don't appear to have that size, re-enter or press Q to exit\n");
+	}
+
+	valid = false;
+	printf("How many would you like?");
+	while(!valid){
+        getline(cin, input);
+		if(input == "Q" || input == "q")
+			return;
+
+        for(int i =0; i < input.length(); i++)
+		    if(input[i] == ' ')
+			    input[i] = '_';
+		
+		if(is_int(input))
+			valid = true;
+		if(!valid)
+			printf("That doesn't appear to be a realy number\n ");
+    }
+	temp.quantity = get_int(input);
+	printf("What is your first name? \n");
+	getline(cin, temp.customer_first);
+
+	printf("What is your last name?\n");
+	getline(cin, temp.customer_last);
+
+	printf("What is your address?\n");
+	getline(cin, temp.address);
+
+	printf("What is your phone number?");
+	getline(cin, temp.phone);
+
+	printf("What is your credit card? ");
+	getline(cin, temp.credit_card);
+
+
+}
+
+
 void Menu::remove_iterm_from_menu(){
 	string input = "", temp = "";
-	bool valid =false;
+	bool valid = false;
 	int index = 0;
 	printf("Please give me the name of the item that you would like to remove: ");
 	getline(cin, input);
@@ -120,12 +259,8 @@ void Menu::remove_iterm_from_menu(){
 			if(input[i] == ' ')
 				input[i] = '_';
 		} 
-
-
-		if(input == "Q")
+		if(input == "Q" || input == "q")
 			return;
-
-		
 		for(int i =0; i < this->num_pizzas; i++){
 
 			temp = pizzas[i].get_name();

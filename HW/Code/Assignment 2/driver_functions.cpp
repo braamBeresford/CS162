@@ -59,7 +59,8 @@ void user_choice(Restaurant &r){
         if(input == "C")
             customer_selection(r);
         else if(input == "E"){
-            r.validate_login(r);
+            if(!r.validate_login(r))
+                continue;
             employee_selection(r);
         }
         else
@@ -98,7 +99,8 @@ void employee_selection(Restaurant & r) {
 
         switch (input_int) {
         case 1: r.change_hours(); break;
-        case 2: cout << "Nothing here"  << endl; break;
+        case 2: system("clear"); printf("ORDERS:\n");
+        r.view_orders(); putchar('\n'); break;
         case 3: cout << "Nothing here"  << endl; break;
         case 4: r.add_item_to_menu(); break;
         case 5: r.remove_iterm_from_menu(); break;
@@ -114,7 +116,6 @@ void employee_selection(Restaurant & r) {
     } while (!logout);
 }
 
-Menu Menu::search_pizza_by_cost(int upper_bound, string size);
 
 
 void remove_underscores(string * arr, int length){
@@ -137,6 +138,7 @@ void print_customer_selection() {
     printf("8. Log out\n");
 }
 
+
 void customer_selection(Restaurant & r) {
     bool logout = false;
     string input = "";
@@ -153,9 +155,9 @@ void customer_selection(Restaurant & r) {
 
         switch (input_int) {
         case 1: r.view_menu(); break;
-        case 2: cout << "Nothing here"  << endl; break;
-        case 3: cout << "Nothing here"  << endl; break;
-        case 4: cout << "Nothing here"  << endl; break;
+        case 2: r.search_by_cost(); break;
+        case 3: cout << "nothing here" << endl; break;
+        case 4: r.place_order(); break;
         case 5: r.view_hours(); break;
         case 6: printf("ADDRESS: \n"); r.view_address(); putchar('\n'); break;
         case 7:  printf("PHONE:\n"); r.view_phone(); putchar('\n'); break;

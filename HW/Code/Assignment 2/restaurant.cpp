@@ -5,8 +5,9 @@
 //Constructor
 Restaurant::Restaurant() {
     Menu menu;
-
+    orders = NULL;
     employees = NULL;
+    num_orders = 0;
     num_days = 0;
     week = NULL;
     name = "NA";
@@ -18,8 +19,13 @@ Restaurant::Restaurant() {
 
 
 Restaurant::~Restaurant(){
-    delete [] employees;
-    delete [] week;
+    if(employees != NULL)
+        delete [] employees;
+    if(week != NULL)
+        delete [] week;
+    
+    employees = NULL;
+    week = NULL;
 }
 
 
@@ -47,12 +53,41 @@ void Restaurant::view_menu() const{
     menu.view_menu();
 }
 
+
+void Restaurant::search_by_cost(){
+    string input ="", size = "";
+    int price = 0;
+    while(true){
+        printf("What size are you looking for? (small, medium, large) \n");
+        getline(cin, size);
+        if(size == "small" || size == "medium" || size == "large")
+            break;
+
+        printf("Invalid input, lower case only\n");
+    }
+    while(true){
+        printf("What is the max price you're looking for? \n");
+        getline(cin, input);
+        if(is_int(input)){
+            price = get_int(input);
+            break;
+        }
+    }
+
+    Menu results = menu.search_pizza_by_cost(price, size);
+    cout << "I'm here! " << endl;
+    results.view_menu();
+    // menu.view_menu();
+}
+
 bool Restaurant::validate_login(Restaurant &r) const{
     string input = "";
     bool valid = false;
     do{
         printf("Username: \n");
         getline(cin, input);
+        if(input == "Q" || input == "q")
+            return false;
         for(int i =0; i < r.return_num_employees(); i++){
             if(employees[i].id == input){
                 valid = true;
@@ -60,11 +95,12 @@ bool Restaurant::validate_login(Restaurant &r) const{
             }
         }
         
-        printf("Please input a valid username\n");
+        printf("Please input a valid username. Q to quit\n");
 
     } while(!valid);
     valid = false;
     do{
+        system("clear");
         printf("Password: \n");
         getline(cin, input);
         for(int i =0; i < r.return_num_employees(); i++){
@@ -108,6 +144,14 @@ void Restaurant::load_data() {
     this->num_employees = get_num_lines(f);
     employees = new employee [num_employees];
     get_employees(f);
+
+    f.close();
+    verify_file_open(f, ORD_NAME);
+    this->num_orders = get_num_lines(f);
+    this->orders = new order [this->num_orders*100];
+    get_orders(f);
+    f.close();
+
     menu.load_data(); 
 }
 
@@ -133,6 +177,14 @@ void Restaurant::change_hours(){
     week[index].close_hour = input;
 }
 
+void Restaurant::place_order(){
+   order temp;
+   menu.place_order(temp);
+   this->num_orders++;
+   temp.order_num = num_orders;
+   orders[num_orders - 1] = temp;
+}
+
 int Restaurant::verify_week_day(string input){
     while(true){
         for(int i =0; i < this->num_days; i++){
@@ -156,6 +208,22 @@ void Restaurant::get_employees(fstream &f) {
         f >> employees[i].id >> employees[i].first_name >> employees[i].last_name >> employees[i].password;
 }
 
+void Restaurant::view_orders(){
+    for(int i =0; i < this->num_orders; i++){
+        cout << orders[i].order_num << " " << orders[i].customer_first << " " << orders[i].customer_last << " ";
+        cout << orders[i].credit_card << " " << orders[i].address << " " << orders[i].pizza << " " << orders[i].size;
+        cout << " " << orders[i].quantity;
+        putchar('\n');
+    }    
+}
+
+void Restaurant::get_orders(fstream &f){
+    for(int i =0; i < this-> num_employees; i++){
+        f >> orders[i].order_num >> orders[i].customer_first >> orders[i].customer_last;
+        f >> orders[i].credit_card >> orders[i].address >> orders[i].phone;
+        f >> orders[i].pizza >> orders[i].size >> orders[i].quantity;
+    }
+}
 
 void Restaurant::add_item_to_menu(){
     menu.add_item_to_menu();

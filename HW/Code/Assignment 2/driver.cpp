@@ -9,5 +9,6 @@ int main() {
 	// 	cout << arr[i] << endl;
 	// int test[1000000] = {0};
 	r.load_data();
+	
 	user_choice(r);
 }

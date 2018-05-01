@@ -1,8 +1,8 @@
 #ifndef PIZZA
 #define PIZZA
+
 #include <iostream>
 #include <string>
-
 using namespace std;
 
 class Pizza{
