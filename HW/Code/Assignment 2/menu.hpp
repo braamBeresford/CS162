@@ -39,6 +39,7 @@ public:
 	void remove_iterm_from_menu();
 	void remove_item_at_index(int index);
 	void place_order(order & temp);
+	void save_data(fstream &f);
 	
 
 

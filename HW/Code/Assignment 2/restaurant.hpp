@@ -3,6 +3,7 @@
 
 #include "driver.hpp"
 #include "menu.hpp"
+#include <sstream>
 // #include "pizza.hpp"
 
 class Restaurant {
@@ -51,7 +52,7 @@ public:
     void get_orders(fstream &f);
     void place_order();
 
-
+    void save_data();
     // To Do
     bool login(string id, string password);
     void search_menu_by_price();

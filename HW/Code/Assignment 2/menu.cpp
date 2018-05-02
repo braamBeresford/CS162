@@ -115,6 +115,8 @@ void Menu::load_data() {
 		pizzas[i].create_ingredients_arr(num_ingredients);
 		load_ingredients(f, num_ingredients, i);
 	}
+
+	f.close();
 }
 
 void Menu::load_ingredients(fstream &f, int num_ingredients, int curr_pizza) {
@@ -155,7 +157,6 @@ void Menu::add_item_to_menu(){
     getline(cin, input);
     num_ingredients = get_int(input);
     p.set_num_ingredients(num_ingredients);
-
     string * temp = new string[num_ingredients];
     p.create_ingredients_arr(num_ingredients);
 
@@ -167,12 +168,33 @@ void Menu::add_item_to_menu(){
     p.fill_ingredients_arr(num_ingredients, temp);
 	num_pizzas++;
     pizzas[num_pizzas-1] = p;
+	// delete [] temp;
+
+	p.~Pizza();
+}
+
+
+void Menu::save_data(fstream &f){
+	string* temp;
+	
+	for(int i = 0; i < num_pizzas; i++){
+		f << pizzas[i].get_name() << ' ' << pizzas[i].get_small_cost() << ' ' << pizzas[i].get_medium_cost();
+		f << ' ' << pizzas[i].get_large_cost() << ' ' << pizzas[i].get_num_ingredients() << ' ';
+		temp = pizzas[i].get_ingredients();
+		for(int j = 0; j < pizzas[i].get_num_ingredients(); j++){
+			f << temp[j] << ' ';
+		}
+		if(i!= num_pizzas-1)
+			f << endl;
+		delete [] temp;
+	}
+
 }
 
 void Menu::place_order(order & temp){
 	string input = "";
 	bool valid = false;
-    printf("What pizza would you like?\n");
+    printf("What pizza would you like? ");
     while(!valid){
         getline(cin, input);
 		if(input == "Q" || input == "q")
@@ -208,7 +230,7 @@ void Menu::place_order(order & temp){
 			valid = true;
 		}
 		if(!valid)
-			printf("We don't appear to have that size, re-enter or press Q to exit\n");
+			printf("We don't appear to have that size, re-enter or press Q to exit ");
 	}
 
 	valid = false;
@@ -225,25 +247,25 @@ void Menu::place_order(order & temp){
 		if(is_int(input))
 			valid = true;
 		if(!valid)
-			printf("That doesn't appear to be a realy number\n ");
+			printf("That doesn't appear to be a realy number  ");
     }
 	temp.quantity = get_int(input);
-	printf("What is your first name? \n");
+	printf("What is your first name? ");
 	getline(cin, temp.customer_first);
 
-	printf("What is your last name?\n");
+	printf("What is your last name? ");
 	getline(cin, temp.customer_last);
 
-	printf("What is your address?\n");
+	printf("What is your address? ");
 	getline(cin, temp.address);
-
-	printf("What is your phone number?");
+ 
+	printf("What is your phone number? ");
 	getline(cin, temp.phone);
 
 	printf("What is your credit card? ");
 	getline(cin, temp.credit_card);
-
-
+	
+	// temp.order_num = "69";
 }
 
 

@@ -23,6 +23,8 @@ Restaurant::~Restaurant(){
         delete [] employees;
     if(week != NULL)
         delete [] week;
+    if(week != NULL)
+        delete [] orders;
     
     employees = NULL;
     week = NULL;
@@ -178,10 +180,14 @@ void Restaurant::change_hours(){
 }
 
 void Restaurant::place_order(){
+   string nums; 
    order temp;
+   stringstream ss;
+   ss << num_orders+1;
+   ss>> nums;
+   temp.order_num = nums;
    menu.place_order(temp);
    this->num_orders++;
-   temp.order_num = num_orders;
    orders[num_orders - 1] = temp;
 }
 
@@ -196,6 +202,27 @@ int Restaurant::verify_week_day(string input){
     }
 }
 
+void Restaurant::save_data(){
+    fstream f;
+    f.open(REST_NAME, fstream::out);
+    f << name << '\n' << phone << '\n' << address << '\n' << num_days << endl;
+    for(int i =0; i < num_days; i++){
+        f << week[i].day << ' ' << week[i].open_hour << ' ' <<  week[i].close_hour << endl;
+    }
+    f.close();
+
+    f.open(ORD_NAME, fstream::out);
+    for(int i = 0; i < num_orders; i++){
+        f << orders[i].order_num << ' ' << orders[i].customer_first << ' ' << orders[i].customer_last << ' ' << orders[i].credit_card;
+        f << ' ' << orders[i].address << ' ' << orders[i].phone << ' ' << orders[i].pizza << ' ' << orders[i].size;
+        f << ' ' << orders[i].quantity << endl;
+    }
+    f.close();
+    f.open(MENU_NAME, fstream::out);
+    menu.save_data(f);
+    f.close();
+    
+}
 /*********************************************************************
  ** Function: get_employees
  ** Description: Pulls employee data from file into struct

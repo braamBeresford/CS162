@@ -38,7 +38,6 @@ int get_num_lines(fstream &f) {
  ** Post-Conditions: Completes when file can be opened
  *********************************************************************/
 void verify_file_open(fstream &f, string filename) {
-
     do {
         f.open(filename.c_str());
         if (f.is_open())
