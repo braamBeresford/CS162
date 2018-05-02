@@ -95,6 +95,38 @@ Menu & Menu::operator=(const Menu & m) {
 }
 
 
+void Menu::search_pizza_by_ingredients_to_exclude(Menu &results, string* ingredients, int num_ingredients){
+	
+	bool present = false;
+	string *temp_ingredients;
+
+	for(int i = 0; i < this->num_pizzas; i++){ //Pizzas
+		for(int j = 0; j < num_ingredients; j++){ // Ingredients want to exclude
+			present = false;
+			for(int k = 0; k < pizzas[i].get_num_ingredients(); k++){ //Ingredients of pizza
+				temp_ingredients = pizzas[i].get_ingredients();
+				if(ingredients[j] == temp_ingredients[k]){
+					present = true;
+					break;
+				}
+
+				delete [] temp_ingredients;
+			}
+		}
+		
+
+		if(present != true){
+			results.pizzas[results.num_pizzas] = this->pizzas[i];
+			results.num_pizzas++;
+		}
+	}
+}
+
+
+void Menu::create_array(int length){
+	pizzas = new Pizza[length];
+	
+}
 //Mutators
 void Menu::load_data() {
 	string name;

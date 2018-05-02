@@ -40,9 +40,10 @@ public:
 	void remove_item_at_index(int index);
 	void place_order(order & temp);
 	void save_data(fstream &f);
+	void create_array(int length);
 	
 
-
+	void search_pizza_by_ingredients_to_exclude(Menu &results, string* ingredients, int num_ingredients);
 	Menu search_pizza_by_cost(int upper_bound, string size);
 
 };

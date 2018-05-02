@@ -1,7 +1,8 @@
 #include "driver.hpp"
 #include "restaurant.hpp"
 #include "menu.hpp"
-
+#include <iostream>
+using namespace std;
 //Constructor
 Restaurant::Restaurant() {
     Menu menu;
@@ -149,7 +150,7 @@ void Restaurant::load_data() {
 
     f.close();
     verify_file_open(f, ORD_NAME);
-    this->num_orders = get_num_lines(f);
+    this->num_orders = get_num_lines(f)-1;
     this->orders = new order [this->num_orders*100];
     get_orders(f);
     f.close();
@@ -250,6 +251,52 @@ void Restaurant::get_orders(fstream &f){
         f >> orders[i].credit_card >> orders[i].address >> orders[i].phone;
         f >> orders[i].pizza >> orders[i].size >> orders[i].quantity;
     }
+}
+
+void Restaurant::search_by_ingredients(){
+    Menu results;
+    results.create_array(100);
+
+    string input = "";
+    int num_ingredients_to_ei = 1;
+    string * sort_ingredients;
+    bool continue_searching = true;
+    
+    while(continue_searching){
+        printf("Would you like to include (I), exclude (E), display results/exit (Q) ");
+        getline(cin, input);
+
+        if(input == "e" || input == "E"){
+            printf("How many ingredients would you like to exclude? ");
+            getline(cin, input);
+            num_ingredients_to_ei = get_int(input);
+            sort_ingredients = new string[num_ingredients_to_ei];
+            for(int i = 0; i < num_ingredients_to_ei; i++){
+                printf("Ingredient: ");
+                getline(cin, sort_ingredients[i]);
+                for(int j = 0; j < sort_ingredients[i].length(); j++)
+                    if(sort_ingredients[i][j]== ' ')
+                        sort_ingredients[i][j] = '_';
+            };
+
+            menu.search_pizza_by_ingredients_to_exclude(results, sort_ingredients, num_ingredients_to_ei);
+        }
+
+        else if(input == "q" || input == "Q")
+            continue_searching = false;
+    }
+
+    
+    // menu.view_menu();
+    results.view_menu();
+
+    printf("Would you like to order off the results? Y/N ");
+    getline(cin, input);
+    if(input == "y" || input == "Y")
+        this->place_order();
+
+    
+
 }
 
 void Restaurant::add_item_to_menu(){

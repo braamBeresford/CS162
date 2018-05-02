@@ -155,7 +155,7 @@ void customer_selection(Restaurant & r) {
         switch (input_int) {
         case 1: r.view_menu(); break;
         case 2: r.search_by_cost(); break;
-        case 3: cout << "nothing here" << endl; break;
+        case 3: r.search_by_ingredients(); break;
         case 4: r.place_order(); break;
         case 5: r.view_hours(); break;
         case 6: printf("ADDRESS: \n"); r.view_address(); putchar('\n'); break;
