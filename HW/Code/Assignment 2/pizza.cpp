@@ -41,6 +41,7 @@ Pizza & Pizza::operator=(const Pizza & pie) {
 	this->medium_cost = pie.medium_cost;
 	this->large_cost = pie.large_cost;
 	this->num_ingredients = pie.num_ingredients;
+	this->ingredients = new string [this->num_ingredients];
 	if (ingredients != NULL)
 		delete [] ingredients;
 	if (num_ingredients == 0)

@@ -100,7 +100,7 @@ void employee_selection(Restaurant & r) {
         case 1: r.change_hours(); break;
         case 2: system("clear"); printf("ORDERS:\n");
         r.view_orders(); putchar('\n'); break;
-        case 3: cout << "Nothing here"  << endl; break;
+        case 3: r.remove_orders(); break;
         case 4: r.add_item_to_menu(); break;
         case 5: r.remove_iterm_from_menu(); break;
         case 6: r.view_menu(); break;
@@ -137,6 +137,12 @@ void print_customer_selection() {
     printf("8. Log out\n");
 }
 
+bool check_all_true( bool arr, int num){
+    for(int i =0; i < num; i++)
+        if(arr[i]== false)
+            return false
+    return true;
+}
 
 void customer_selection(Restaurant & r) {
     bool logout = false;

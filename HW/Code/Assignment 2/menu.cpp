@@ -95,6 +95,13 @@ Menu & Menu::operator=(const Menu & m) {
 }
 
 
+void Menu::menu.search_pizza_by_ingredients_to_exclude(results, sort_ingredients, num_ingredients_to_ei){
+	bool* present = new bool[num_ingredients_to_ei];
+
+	
+}
+
+
 void Menu::search_pizza_by_ingredients_to_exclude(Menu &results, string* ingredients, int num_ingredients){
 	
 	bool present = false;
@@ -199,10 +206,10 @@ void Menu::add_item_to_menu(){
 
     p.fill_ingredients_arr(num_ingredients, temp);
 	num_pizzas++;
-    pizzas[num_pizzas-1] = p;
-	// delete [] temp;
-
-	p.~Pizza();
+    this->pizzas[num_pizzas-1] = p;
+	delete [] temp;
+	// (*this).view_menu();
+	// p.~Pizza();
 }
 
 

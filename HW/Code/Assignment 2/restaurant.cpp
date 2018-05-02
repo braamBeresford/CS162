@@ -245,6 +245,25 @@ void Restaurant::view_orders(){
     }    
 }
 
+void Restaurant::remove_orders(){
+    string input ="";
+    printf("What order NUMBER would you like to remove? ");
+    getline(cin, input);
+    for(int i = 0; i < this->num_orders; i++){
+        if(orders[i].order_num == input){
+            for(int j = i; j < this->num_orders; j++){
+		        if(j+1 == this-> num_orders){
+			        continue;
+                    }
+		        else
+			        orders[j] = orders[j+1];
+                }
+	            // pizzas[this->num_pizzas-1] = NULL;
+	        this->num_orders--;
+        }
+    }
+}
+
 void Restaurant::get_orders(fstream &f){
     for(int i =0; i < this-> num_employees; i++){
         f >> orders[i].order_num >> orders[i].customer_first >> orders[i].customer_last;
@@ -282,8 +301,28 @@ void Restaurant::search_by_ingredients(){
             menu.search_pizza_by_ingredients_to_exclude(results, sort_ingredients, num_ingredients_to_ei);
         }
 
+
+        else if(input == "i" || input == "I"){
+            printf("What input would oyu like to include? ");
+            getline(cin, input);
+        }
+
         else if(input == "q" || input == "Q")
             continue_searching = false;
+            num_ingredients_to_ei = get_int(input);
+            sort_ingredients = new string[num_ingredients_to_ei];
+
+            for(int i = 0; i < num_ingredients_to_ei; i++){
+                printf("Ingredient: ");
+                getline(cin, sort_ingredients[i]);
+                for(int j = 0; j < sort_ingredients[i].length(); j++)
+                    if(sort_ingredients[i][j]== ' ')
+                        sort_ingredients[i][j] = '_';
+            };
+
+            menu.search_pizza_by_ingredients_to_exclude(results, sort_ingredients, num_ingredients_to_ei);
+
+        delete [] sort_ingredients;
     }
 
     
