@@ -49,11 +49,17 @@ void verify_file_open(fstream &f, string filename) {
 
 
 
-
+/*********************************************************************
+ ** Function: user_choice
+ ** Description: Gives the users their choices
+ ** Parameters: Must be called
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void user_choice(Restaurant &r){
     string input = "";
     while(true){
-        printf("Are you a customer (C),an employee (E), or logout (Q)\n");
+        printf("Are you a customer (C), an employee (E), or logout (Q)\n");
         getline(cin, input);
         if(input == "C")
             customer_selection(r);
@@ -67,7 +73,13 @@ void user_choice(Restaurant &r){
     }
 }
 
-
+/*********************************************************************
+ ** Function: print_employee_selection
+ ** Description: Gives the employee their choice
+ ** Parameters: Requires a brain
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void print_employee_selection() {
     // system("clear");
     printf("Welcome dedicated employee \n");
@@ -83,6 +95,13 @@ void print_employee_selection() {
     printf("10. Logout\n");
 }
 
+/*********************************************************************
+ ** Function: Employee Selection
+ ** Description: Takes the employees input
+ ** Parameters: User input
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void employee_selection(Restaurant & r) {
     bool logout = false;
     string input = "";
@@ -116,7 +135,13 @@ void employee_selection(Restaurant & r) {
 }
 
 
-
+/*********************************************************************
+ ** Function:
+ ** Description:
+ ** Parameters:
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void remove_underscores(string * arr, int length){
     for(int i =0; i < length; i++)
         for(int j = 0; j < arr[i].length(); j++)
@@ -137,12 +162,12 @@ void print_customer_selection() {
     printf("8. Log out\n");
 }
 
-bool check_all_true( bool arr, int num){
-    for(int i =0; i < num; i++)
-        if(arr[i]== false)
-            return false
-    return true;
-}
+// bool check_all_true( bool* arr, int num){
+//     for(int i =0; i < num; i++)
+//         if(arr[i] == false)
+//             return false;
+//     return true;
+// }
 
 void customer_selection(Restaurant & r) {
     bool logout = false;

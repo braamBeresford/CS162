@@ -1,8 +1,23 @@
 #include "pizza.hpp"
 #include "menu.hpp"
 #include "driver.hpp"
+/*********************************************************************
+ ** Program Filename:  menu.cpp
+ ** Author: Braam Beresford
+ ** Date: 10th of April 2018
+ ** Description: Function file for entire program
+ ** Input: User input and command line arguments
+ ** Output: To screen and to file
+ *********************************************************************/
 
 using namespace std;
+/*********************************************************************
+ ** Function: Distructor and Creator
+ ** Description: Handles creation and distruction of objects
+ ** Parameters: Being run
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 Menu::Menu() {
 	this-> num_pizzas = 0;
 	this-> pizzas = NULL;
@@ -16,6 +31,13 @@ Menu::~Menu(){
 
 
 //Accesors
+/*********************************************************************
+ ** Function: Accessors
+ ** Description: Allows access to the the private objects
+ ** Parameters:
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void Menu::view_num_pizzas() const {cout << num_pizzas; }
 void Menu::view_menu() const {
 	for(int i =0; i < num_pizzas; i++){
@@ -95,12 +117,45 @@ Menu & Menu::operator=(const Menu & m) {
 }
 
 
-void Menu::menu.search_pizza_by_ingredients_to_exclude(results, sort_ingredients, num_ingredients_to_ei){
-	bool* present = new bool[num_ingredients_to_ei];
 
+void Menu::search_pizza_by_ingredients_to_include(Menu &results, string* ingredients, int num_ingredients){
+	bool* present = new bool[num_ingredients];
+	string *temp_ingredients;
 	
+
+	for(int i = 0; i < this->num_pizzas; i++){ //Pizzas
+		for(int v =0; v < num_ingredients; v ++)
+			present[v] = false;
+
+
+		for(int j = 0; j < num_ingredients; j++){ //Ingredients want to include
+			for(int k = 0; k < pizzas[i].get_num_ingredients(); k++){ //Ingredients of each pizzas
+				temp_ingredients = pizzas[i].get_ingredients();
+				if(ingredients[j] == temp_ingredients[k])
+					present[j] = true;
+
+				delete [] temp_ingredients;
+			}
+		}
+
+
+		if(check_all_true( present, num_ingredients)){
+			results.pizzas[results.num_pizzas] = this->pizzas[i];
+			results.num_pizzas++;
+		}
+
+	}
+
+	delete [] present;
 }
 
+
+bool Menu::check_all_true( bool* arr, int num){
+    for(int i =0; i < num; i++)
+        if(arr[i] == false)
+            return false;
+    return true;
+}
 
 void Menu::search_pizza_by_ingredients_to_exclude(Menu &results, string* ingredients, int num_ingredients){
 	
@@ -134,7 +189,16 @@ void Menu::create_array(int length){
 	pizzas = new Pizza[length];
 	
 }
+
+
 //Mutators
+/*********************************************************************
+ ** Function: Load data	
+ ** Description: Handles data loading for the menu
+ ** Parameters: Data must be available
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void Menu::load_data() {
 	string name;
 	int smll_cost, med_cost, lg_cost, num_ingredients;
@@ -158,14 +222,31 @@ void Menu::load_data() {
 	f.close();
 }
 
-void Menu::load_ingredients(fstream &f, int num_ingredients, int curr_pizza) {
-	string temp[num_ingredients];
-	for (int i = 0; i < num_ingredients; i ++) {
-		f >> temp[i];
+/*********************************************************************
+ ** Function: Load ingredients
+ ** Description: Loads the ingredients for each pizza
+ ** Parameters: Rqequires ingredients
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
+void Menu::load_ingredients(fstream &f, int num_in, int curr_pizza) {
+	string* temp = new string[num_in];
+
+	for (int i = 0; i < num_in; i ++) {
+		f >>  temp[i];
 	}
-	pizzas[curr_pizza].fill_ingredients_arr(num_ingredients, temp);
+
+	pizzas[curr_pizza].fill_ingredients_arr(num_in, temp);
+	delete [] temp;
 }
 
+/*********************************************************************
+ ** Function: Add item to menu
+ ** Description: This function allows users to add to menu
+ ** Parameters: Valid names and prices
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void Menu::add_item_to_menu(){
     Pizza p;
     string input = "", name = "";
@@ -212,7 +293,13 @@ void Menu::add_item_to_menu(){
 	// p.~Pizza();
 }
 
-
+/*********************************************************************
+ ** Function: Save data
+ ** Description: Saves all data to files when program ends
+ ** Parameters: Ending program
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void Menu::save_data(fstream &f){
 	string* temp;
 	
@@ -230,6 +317,14 @@ void Menu::save_data(fstream &f){
 
 }
 
+
+/*********************************************************************
+ ** Function: Place order
+ ** Description: Allows user to place and order
+ ** Parameters: Order must be in array
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void Menu::place_order(order & temp){
 	string input = "";
 	bool valid = false;
@@ -307,7 +402,13 @@ void Menu::place_order(order & temp){
 	// temp.order_num = "69";
 }
 
-
+/*********************************************************************
+ ** Function: remove item from menu
+ ** Description: This function allows users to remove items
+ ** Parameters: Item must exist
+ ** Pre-Conditions:
+ ** Post-Conditions:
+ *********************************************************************/
 void Menu::remove_iterm_from_menu(){
 	string input = "", temp = "";
 	bool valid = false;

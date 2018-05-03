@@ -1,5 +1,13 @@
 #ifndef PIZZA
 #define PIZZA
+/*********************************************************************
+ ** Program Filename:  pizza.cpp
+ ** Author: Braam Beresford
+ ** Date: 5th of May 2018
+ ** Description: Pizza header
+ ** Input: 
+ ** Output: 
+ *********************************************************************/
 
 #include <iostream>
 #include <string>

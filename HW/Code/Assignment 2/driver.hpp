@@ -49,5 +49,5 @@ void customer_selection(Restaurant & r);
 void print_customer_selection();
 void user_choice(Restaurant &r);
 void remove_underscores(string * arr, int length);
-bool check_all_true( bool arr, int num);
+// bool check_all_true( bool arr, int num);
 #endif

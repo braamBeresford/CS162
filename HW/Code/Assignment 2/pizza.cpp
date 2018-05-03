@@ -1,5 +1,21 @@
 #include "pizza.hpp"
+/*********************************************************************
+ ** Program Filename:  pizza.cpp
+ ** Author: Braam Beresford
+ ** Date: 5th of May 2018
+ ** Description: Pizza implementation
+ ** Input: User
+ ** Output: 
+ *********************************************************************/
 
+
+/*********************************************************************
+ ** Function: Constructor
+ ** Description: Creates and initializes the object
+ ** Parameters:  
+ ** Pre-Conditions: 
+ ** Post-Conditions: 
+ *********************************************************************/
 Pizza::Pizza() {
 	name = "N/A";
 	ID = -1;
@@ -12,9 +28,9 @@ Pizza::Pizza() {
 
 
 Pizza::~Pizza(){
-	if(ingredients != NULL)
-		delete [] ingredients;
-	ingredients = NULL;
+
+	if (this->ingredients != NULL) 
+		delete[] this->ingredients;
 }
 
 Pizza::Pizza(const Pizza& pie) {
@@ -47,7 +63,6 @@ Pizza & Pizza::operator=(const Pizza & pie) {
 	if (num_ingredients == 0)
 		ingredients = NULL;
 	else {
-		ingredients = new string[this-> num_ingredients];
 		for (int i = 0; i < num_ingredients; i++) {
 			this->ingredients[i] = pie.ingredients[i];
 		}
@@ -105,7 +120,6 @@ void Pizza::create_ingredients_arr(int num_ingredients) {
 
 void Pizza::fill_ingredients_arr(int num, string temp[]){
 	for(int i =0; i < num; i++){
-		
 		ingredients[i] = temp[i];
 	}
 }
