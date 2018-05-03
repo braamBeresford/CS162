@@ -94,7 +94,7 @@ void Restaurant::search_by_cost(){
     Menu results =  menu.search_pizza_by_cost(price, size);
 //    cout << "I'm here! " << endl;
     results.view_menu();
-
+}
 
 bool Restaurant::validate_login(Restaurant &r) const{
     string input = "";
@@ -180,7 +180,7 @@ void Restaurant::load_data() {
     f.close();
      
     verify_file_open(f, ORD_NAME);
-    this->num_orders = get_num_lines(f)-1;
+    this->num_orders = get_num_lines(f);
     this->orders = new order [this->num_orders*100];
     get_orders(f);
     
