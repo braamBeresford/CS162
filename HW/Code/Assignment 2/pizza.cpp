@@ -28,7 +28,6 @@ Pizza::Pizza() {
 
 
 Pizza::~Pizza(){
-
 	if (this->ingredients != NULL) 
 		delete[] this->ingredients;
 }
@@ -43,7 +42,7 @@ Pizza::Pizza(const Pizza& pie) {
 	if (num_ingredients == 0)
 		ingredients = NULL;
 	else {
-		for (int i = 0; i < num_ingredients; i++) {
+		for (int i = 0; i <this-> num_ingredients; i++) {
 			this->ingredients[i] = pie.ingredients[i];
 		}
 	}
@@ -57,9 +56,10 @@ Pizza & Pizza::operator=(const Pizza & pie) {
 	this->medium_cost = pie.medium_cost;
 	this->large_cost = pie.large_cost;
 	this->num_ingredients = pie.num_ingredients;
-	this->ingredients = new string [this->num_ingredients];
 	if (ingredients != NULL)
 		delete [] ingredients;
+	
+	this->ingredients = new string [this->num_ingredients];
 	if (num_ingredients == 0)
 		ingredients = NULL;
 	else {

@@ -24,12 +24,37 @@ Menu::Menu() {
 }
 
 Menu::~Menu(){
+//	cout << "help1 " << endl;
 	if(pizzas != NULL)
 		delete [] pizzas;
+//	cout << "Help2" << endl;
 	pizzas = NULL;
 }
 
+Menu::Menu(const Menu& copy){
+	this->num_pizzas = copy.num_pizzas;
+	if(this->num_pizzas > 0){
+		this->pizzas = new Pizza[this->num_pizzas];
+		for(int i =0;i < this->num_pizzas; i++){
+			this->pizzas[i] = copy.pizzas[i];
+		}
+	}
+	else
+		this->pizzas = NULL;
+}
 
+Menu& Menu::operator=(const Menu& copy){
+	this->num_pizzas = copy.num_pizzas;
+	if(this-> num_pizzas > 0){
+		this->pizzas = new Pizza[this->num_pizzas];
+		for(int i =0; i < this->num_pizzas; i++){
+			this->pizzas[i] = copy.pizzas[i];
+		}
+	}
+	else
+		this->pizzas = NULL;
+	return *this;
+}
 //Accesors
 /*********************************************************************
  ** Function: Accessors
@@ -81,7 +106,7 @@ Menu Menu::search_pizza_by_cost(int upper_bound, string size){
 			i--;
 		}
 	}
-    return searched;
+	return searched;
 }
 
 
@@ -98,23 +123,6 @@ void Menu::remove_item_at_index(int index){
 }
 
 
-Menu & Menu::operator=(const Menu & m) {
-	this->num_pizzas = m.num_pizzas;
-	if(pizzas!= NULL)
-		delete [] pizzas;
-	
-	if(num_pizzas==0)
-		pizzas = NULL;
-	
-	else{
-		pizzas = new Pizza[this->num_pizzas];
-		for(int i = 0; i < num_pizzas; i++){
-			this->pizzas[i] = m.pizzas[i];
-		}
-	}
-
-	return *this;
-}
 
 
 
@@ -216,6 +224,7 @@ void Menu::load_data() {
 		pizzas[i].set_large_cost(lg_cost);
 		pizzas[i].set_num_ingredients(num_ingredients);
 		pizzas[i].create_ingredients_arr(num_ingredients);
+		
 		load_ingredients(f, num_ingredients, i);
 	}
 
@@ -368,7 +377,7 @@ void Menu::place_order(order & temp){
 	}
 
 	valid = false;
-	printf("How many would you like?");
+	printf("How many would you like? ");
 	while(!valid){
         getline(cin, input);
 		if(input == "Q" || input == "q")

@@ -91,10 +91,9 @@ void Restaurant::search_by_cost(){
         }
     }
 
-    Menu results = menu.search_pizza_by_cost(price, size);
-    cout << "I'm here! " << endl;
+    Menu results =  menu.search_pizza_by_cost(price, size);
+//    cout << "I'm here! " << endl;
     results.view_menu();
-    // menu.view_menu();
 }
 
 bool Restaurant::validate_login(Restaurant &r) const{
@@ -172,7 +171,6 @@ void Restaurant::load_data() {
     }
     
     f.close();
-   
     verify_file_open(f, EMP_NAME);
     this->num_employees = get_num_lines(f);
     employees = new employee [num_employees];
@@ -181,13 +179,15 @@ void Restaurant::load_data() {
     f.close();
      
     verify_file_open(f, ORD_NAME);
-    this->num_orders = get_num_lines(f)-1;
+    this->num_orders = get_num_lines(f);
     this->orders = new order [this->num_orders*100];
     get_orders(f);
+
     
     f.close();
     
     menu.load_data(); 
+
 }
 
 
@@ -350,7 +350,7 @@ void Restaurant::search_by_ingredients(){
     bool continue_searching = true;
     
     while(continue_searching){
-        results.view_menu();
+        //results.view_menu();
         printf("Would you like to include (I), exclude (E), display results/exit (Q) ");
         getline(cin, input);
 

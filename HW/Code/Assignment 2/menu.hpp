@@ -32,6 +32,7 @@ public:
 	//Constructor
 	Menu();
 	~Menu();
+	Menu(const Menu&);
 	Menu & operator=(const Menu &);
 
 	// Accesors
