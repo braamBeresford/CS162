@@ -8,14 +8,15 @@ using namespace std;
 class Unit{
 	private:
 		int rent;
-		Tenant t;
+		Tenant(type) t;
 
 	public:
 		Unit();
+		Unit(type);
 		~Unit();
 
 		int get_rent() const;
-		const Tenant* get_tenant() const;
+		Tenant* get_tenant() const;
 		
 		void set_rent(int rent);
 

@@ -4,7 +4,7 @@ using namespace std;
 class Property{
 	protected:
 		float value;
-		int location;
+		string location;
 		float mortgage;
 		static const float tax = 0.015;
 		

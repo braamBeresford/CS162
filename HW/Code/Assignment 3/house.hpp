@@ -7,7 +7,7 @@ using namespace std;
 
 class House:public Property{
 	private:
-		Unit u(;
+		Unit u();
 
 	public:
 		Tenant* get_tenant() const;
