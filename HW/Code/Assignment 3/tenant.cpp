@@ -11,15 +11,17 @@ Tenant::Tenant(){
 
 
 Tenant::Tenant(int type){
-	name = "Average Joe";
+	
 	this->type = type;
 	this->agreeability = (rand()%5)+1;
 
 	if(type == PERSON){
+		this->name = "Average Joe";
 		this->budget = (((rand()%450)+50) *10);
 		this->rent = this->budget;
 	}
 	else if(type == BUSINESS){
+		this->name = "Average Business";
 		this->budget = (((rand()%800)+200)*10);
 		this->rent = this->budget;
 	}

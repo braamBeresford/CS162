@@ -1,4 +1,6 @@
-#include "driver.hpp"
+#ifndef PROPERTY
+#define PROPERTY
+#include "includes.hpp"
 using namespace std;
 
 class Property{
@@ -10,17 +12,20 @@ class Property{
 		
 	public:
 		Property();
-		~Property();
+		// ~Property();
+
+		
 		// Getters
 		float get_value() const;
 		string get_location() const;
 		float get_mortgage() const;
-		int get_num_tenants() const;
 
 		//Setters
 
 		void set_value(float value);
-		void set_location(int location);
-		void set_mortage(float mortage);
+		void set_location(string location);
+		void set_mortgage(float mortage);
 
 };
+
+#endif

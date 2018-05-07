@@ -1,17 +1,21 @@
 #ifndef HOUSE
 #define HOUSE
-#include "driver.hpp"
+#include "includes.hpp"
 #include "tenant.hpp"
+#include "property.hpp"
 
 using namespace std;
 
 class House:public Property{
 	private:
-		Unit u();
+		Tenant t;
 
 	public:
+		House();
+		// ~House();
+
+
 		Tenant* get_tenant() const;
-		Unit* get_unit() const;
 		
 };
 

@@ -17,3 +17,28 @@ Property::Property(){
 			this->location = "NW"; break;
 	}
 }
+
+
+float Property::get_value() const{
+    return this->value;
+}
+
+string Property::get_location() const{
+    return this-> location;
+}
+
+float Property::get_mortgage() const{
+    return this->mortgage;
+}
+
+void Property::set_value(float value) {
+    this->value = value;
+}
+
+void Property::set_location(string loc){
+    this->location = loc;
+}
+
+void Property::set_mortgage(float mortgage){
+    this->mortgage = mortgage;
+}

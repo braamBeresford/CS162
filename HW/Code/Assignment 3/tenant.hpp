@@ -1,6 +1,6 @@
 #ifndef TENANT
 #define TENANT
-#include "driver.hpp"
+#include "includes.hpp"
 
 using namespace std;
 
@@ -14,7 +14,8 @@ class Tenant{
 
 	public:
 		Tenant();
-		~Tenant();
+		Tenant(int type);
+		// ~Tenant();
 		Tenant(const Tenant&);
 		Tenant & operator=(const Tenant&);
 

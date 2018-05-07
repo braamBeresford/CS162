@@ -1,7 +1,8 @@
 #include "driver.hpp"
-
 using namespace std;
 
 int main(){
-	cout << "Here is the test" << endl;
+	srand(time(NULL));
+	House h;
+	cout << "value " << h.get_value() << endl;
 }
