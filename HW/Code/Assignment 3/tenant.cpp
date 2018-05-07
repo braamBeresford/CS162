@@ -39,3 +39,10 @@ Tenant& Tenant::operator=(const Tenant& copy){
 	this->budget = copy.budget;
 	
 }
+
+
+string Tenant::get_name() const{return this->name;}
+int Tenant::get_type() const{return this->type;}
+int Tenant::get_agreeability() const{return this->agreeability;}
+int Tenant::get_budget() const{return this->budget;}
+int Tenant::get_rent() const{ return this->rent;}

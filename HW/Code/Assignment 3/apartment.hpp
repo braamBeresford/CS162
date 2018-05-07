@@ -7,19 +7,19 @@
 
 using namespace std;
 
-class Apartment{
+class Apartment:public Property{
     private:
         int num_tenants;
         Tenant * tenants;
 
     public:
         Apartment();
-        ~Apartment();
+        // ~Apartment();
 
         int get_num_tenants() const;
-        Tenant get_tenants() const;
+        Tenant get_tenant(int i) const; //TODO
         
-}
+};
 
 
 

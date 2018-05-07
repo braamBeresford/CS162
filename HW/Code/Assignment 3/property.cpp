@@ -4,6 +4,7 @@ using namespace std;
 
 Property::Property(){
     int temp = rand()%5;
+	this->mortgage = ((rand()%400)+10)*10;
 	switch(temp){
 		case(0):
 			this->location = "SW"; break;
