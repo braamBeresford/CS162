@@ -6,6 +6,7 @@ using namespace std;
 class Property{
 	protected:
 		float value;
+		string type;
 		string location;
 		float mortgage;
 		static const float tax = 0.015;
@@ -19,6 +20,7 @@ class Property{
 		float get_value() const;
 		string get_location() const;
 		float get_mortgage() const;
+		string get_type() const;
 
 		//Setters
 
@@ -27,5 +29,6 @@ class Property{
 		void set_mortgage(float mortage);
 
 };
+
 
 #endif

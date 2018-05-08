@@ -9,6 +9,11 @@ Apartment::Apartment(){
     for(int i = 0; i < this->num_tenants; i++){
         this->tenants[i] = Tenant(PERSON);
     }
+    this->type = APART;
+}
+
+Apartment::~Apartment(){
+    delete [] tenants;
 }
 
 int Apartment::get_num_tenants() const{

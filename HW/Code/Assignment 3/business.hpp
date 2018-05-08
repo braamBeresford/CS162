@@ -1,5 +1,5 @@
-#ifndef BIZ
-#define BIZ
+#ifndef BIZ_H
+#define BIZ_H
 
 #include "includes.hpp"
 #include "tenant.hpp"
@@ -14,10 +14,10 @@ class Business:public Property{
 
     public:
         Business();
-        // ~Apartment();
+        ~Business();
 
         int get_num_tenants() const;
-        Tenant get_tenant(int i) const; //TODO
+        Tenant* get_tenant(int i) const; //TODO
         
 };
 

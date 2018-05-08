@@ -1,5 +1,5 @@
-#ifndef APART
-#define APART
+#ifndef APART_H
+#define APART_H
 
 #include "includes.hpp"
 #include "tenant.hpp"
@@ -14,7 +14,7 @@ class Apartment:public Property{
 
     public:
         Apartment();
-        // ~Apartment();
+        ~Apartment();
 
         int get_num_tenants() const;
         Tenant get_tenant(int i) const; //TODO

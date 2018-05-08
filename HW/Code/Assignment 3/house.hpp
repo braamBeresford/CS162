@@ -1,5 +1,5 @@
-#ifndef HOUSE
-#define HOUSE
+#ifndef HOUSE_H
+#define HOUSE_H
 #include "includes.hpp"
 #include "tenant.hpp"
 #include "property.hpp"

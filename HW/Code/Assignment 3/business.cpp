@@ -9,14 +9,20 @@ Business::Business(){
     for(int i = 0; i < this->num_tenants; i++){
         this->tenants[i] = Tenant(PERSON);
     }
+
+    type = BIZ;
+}
+
+Business::~Business(){
+    delete [] tenants;
 }
 
 int Business::get_num_tenants() const{
     return this->num_tenants;
 }
 
-Tenant Business::get_tenant(int index) const{
-    return tenants[index];
+Tenant* Business::get_tenant(int index) const{
+    return &(tenants[index]);
 }
 
 

@@ -32,6 +32,10 @@ float Property::get_mortgage() const{
     return this->mortgage;
 }
 
+string Property::get_type() const{return this->type;}
+
+
+
 void Property::set_value(float value) {
     this->value = value;
 }
@@ -43,3 +47,4 @@ void Property::set_location(string loc){
 void Property::set_mortgage(float mortgage){
     this->mortgage = mortgage;
 }
+
