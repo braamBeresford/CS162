@@ -37,6 +37,9 @@ Tenant& Tenant::operator=(const Tenant& copy){
 	this->name = copy.name;
 	this->agreeability = copy.agreeability;
 	this->budget = copy.budget;
+
+	return *this;
+
 	
 }
 

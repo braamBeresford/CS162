@@ -14,6 +14,8 @@ class Property{
 	public:
 		Property();
 		// ~Property();
+		Property& operator=(const Property& copy);
+
 
 		
 		// Getters

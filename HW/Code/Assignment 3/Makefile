@@ -1,4 +1,4 @@
-CC = g++ -g
+CC = g++ -g 
 exe_file = assignment3
 
 $(exe_file): driver.o house.o property.o tenant.o apartment.o business.o

@@ -20,6 +20,18 @@ Property::Property(){
 }
 
 
+
+Property& Property::operator=(const Property& copy){
+	this->value = copy.value;
+	this->type = copy.type;
+	this->location = copy.location;
+	this->mortgage = copy.mortgage;
+	
+	return *this;
+
+}
+
+
 float Property::get_value() const{
     return this->value;
 }

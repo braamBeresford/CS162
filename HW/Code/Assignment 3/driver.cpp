@@ -1,13 +1,18 @@
 #include "driver.hpp"
+
+
 using namespace std;
 
 
-// 
+
 int main(){
 	srand(time(NULL));
 	int num_properties = 9;
-	int temp =0;
-	Property * properties = new Property[9];
+	int num_owned = 0;
+	Property * properties;
+	properties  = new  Property[num_properties];
+	// set_prop_array(properties, num_properties);
+	int temp = 0;
 	for(int i = 0; i < num_properties; i++){
 		temp = rand()&3;
 		if(temp ==0)
@@ -19,8 +24,8 @@ int main(){
 		else 
 			properties[i] = Business();
 	}
-	
-// 
+
+
 	print_properties(properties, num_properties);
 	House h;
 	Apartment a;
