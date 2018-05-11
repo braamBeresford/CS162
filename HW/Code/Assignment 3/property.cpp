@@ -6,6 +6,7 @@ Property::Property(){
     int temp = rand()%5;
 	this->mortgage = ((rand()%400)+10)*10;
 	this->mortgage_paid = 0;
+	sold = false;
 	switch(temp){
 		case(0):
 			this->location = "SW"; break;
@@ -27,7 +28,7 @@ Property& Property::operator=(const Property& copy){
 	this->type = copy.type;
 	this->location = copy.location;
 	this->mortgage = copy.mortgage;
-	this->sold = false;
+	this->sold = copy.sold;
 	
 	return *this;
 
@@ -56,6 +57,11 @@ int Property::get_mortgage_paid() const{return this-> mortgage_paid;}
 
 string Property::get_type() const{return this->type;}
 
+bool Property::get_sold() const{return this->sold;}
+
+
+
+
 
 void Property::set_value(float value) {
     this->value = value;
@@ -73,3 +79,6 @@ void Property::increase_mortgage_paid(){
 	this->mortgage_paid += this->mortgage;
 }
 
+void Property::set_sold(bool sold){
+	this->sold = sold;
+}

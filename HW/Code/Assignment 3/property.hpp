@@ -17,11 +17,11 @@ class Property{
 		
 	public:
 		Property();
-		~Property();
+		virtual ~Property();
 		Property& operator=(const Property& copy);
 
 
-		
+		void test() {}
 		// Getters
 		float get_value() const;
 		string get_location() const;
@@ -30,6 +30,7 @@ class Property{
 		int get_num_tenants() const;
 		int get_mortgage_paid() const;
 		virtual Tenant& get_tenant(int index){}
+		bool get_sold() const;
 
 
 		//Setters
@@ -38,6 +39,7 @@ class Property{
 		void set_location(string location);
 		void set_mortgage(float mortage);
 		void increase_mortgage_paid();
+		void set_sold(bool sold);
 
 };
 

@@ -14,6 +14,10 @@ class Player{
 
     public:
         Player();
+
+        Player(const Player&);
+        Player& operator=(const Player& copy);
+
         
         //Getters
         string get_name() const;
@@ -26,6 +30,7 @@ class Player{
         void set_name(string name);
         void set_balance(int i);
         void change_balace(int i);
+        void change_num_owned(int change); //Adds the difference
 
 
 

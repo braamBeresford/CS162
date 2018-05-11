@@ -13,7 +13,6 @@ Apartment::Apartment(){
 }
 
 Apartment::~Apartment(){
-    cout << "Called in apartment\n";
     delete [] tenants;
 }
 

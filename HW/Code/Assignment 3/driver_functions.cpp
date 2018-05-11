@@ -27,3 +27,28 @@ Property ** set_prop_array(const int num_properties){
 
 	return properties;
 }
+
+void get_mortgage_payments(Property ** properties, int & mortgage_due, const Player& p){
+	for(int i = 0; i < p.get_num_properties(); i++){
+				if(trueproperties[i]->get_sold())
+					mortgage_due += properties[i]->get_mortgage();
+
+				cout << properties[i]->get_mortgage() << endl;
+			}
+
+	cout << mortgage_due << endl;
+}
+
+
+
+void turn(Property ** properties, Player & p){
+	int taxes_due = 0;
+	int mortgage_due = 0;
+	while(true){
+		get_mortgage_payments(properties, mortgage_due, p);
+		break;
+	}
+
+	cout << mortgage_due << endl;
+}
+

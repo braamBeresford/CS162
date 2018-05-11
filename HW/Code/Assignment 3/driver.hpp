@@ -12,4 +12,8 @@ using namespace std;
 
 Property ** set_prop_array( const int num_properties);
 void print_properties( const Property* props, const int num);
+
+
+void get_mortgage_payments(Property ** properties, int &mortgage_due, const Player& p);
+void turn(Property ** properties, Player & p);
 #endif
