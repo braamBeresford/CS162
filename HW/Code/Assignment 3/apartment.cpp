@@ -13,16 +13,11 @@ Apartment::Apartment(){
 }
 
 Apartment::~Apartment(){
+    cout << "Called in apartment\n";
     delete [] tenants;
 }
 
-int Apartment::get_num_tenants() const{
-    return this->num_tenants;
+Tenant& Apartment::get_tenant(int index){
+    return (tenants[index]);
 }
-
-Tenant Apartment::get_tenant(int index) const{
-    return tenants[index];
-}
-
-
 

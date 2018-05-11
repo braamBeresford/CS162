@@ -12,10 +12,10 @@ class House:public Property{
 
 	public:
 		House();
-		// ~House();
+		~House();
 
 
-		Tenant* get_tenant() const;
+		Tenant& get_tenant(int index); 
 		
 };
 

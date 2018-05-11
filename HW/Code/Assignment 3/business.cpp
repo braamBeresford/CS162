@@ -17,12 +17,8 @@ Business::~Business(){
     delete [] tenants;
 }
 
-int Business::get_num_tenants() const{
-    return this->num_tenants;
-}
-
-Tenant* Business::get_tenant(int index) const{
-    return &(tenants[index]);
+Tenant& Business::get_tenant(int index){
+    return (tenants[index]);
 }
 
 

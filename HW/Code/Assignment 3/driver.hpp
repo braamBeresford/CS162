@@ -9,6 +9,6 @@ using namespace std;
 #include "house.hpp"
 #include "driver_functions.cpp"
 
-void set_prop_array(Property* prop, const int num_props);
+Property ** set_prop_array( const int num_properties);
 void print_properties( const Property* props, const int num);
 #endif

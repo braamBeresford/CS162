@@ -13,7 +13,7 @@ Tenant::Tenant(){
 Tenant::Tenant(int type){
 	
 	this->type = type;
-	this->agreeability = (rand()%5)+1;
+	this->agreeability = (rand()%5)+1; 
 
 	if(type == PERSON){
 		this->name = "Average Joe";

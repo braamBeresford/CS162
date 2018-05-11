@@ -9,32 +9,19 @@ int main(){
 	srand(time(NULL));
 	int num_properties = 9;
 	int num_owned = 0;
-	Property * properties;
-	properties  = new  Property[num_properties];
-	// set_prop_array(properties, num_properties);
-	int temp = 0;
-	for(int i = 0; i < num_properties; i++){
-		temp = rand()&3;
-		if(temp ==0)
-			properties[i] = House();
-		
-		else if(temp == 1)
-			properties[i] = Apartment();
-		
-		else 
-			properties[i] = Business();
-	}
+	Property ** properties;
+	
+	properties = set_prop_array( num_properties);
+	// print_properties(properties, num_properties);
 
-
-	print_properties(properties, num_properties);
-	House h;
-	Apartment a;
-	Business b;
 
 	
-	// cout << "Apart " << properties[1].get_type()  << endl;
-	// cout << "Biz " << properties[2].get_type() << endl;
-	// cout << "value " << properties[3].get_type()  << endl;
+	Property * base;
+	Business derived;
+	base = &derived;
 
+	cout << "Paid: " << properties[2]->get_type() << ' '<< properties[2]->get_tenant(0).get_agreeability() << endl;
+	for(int i =0; i < num_properties; i++)
+		delete properties[i];
 	delete [] properties;
 }
