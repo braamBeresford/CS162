@@ -7,6 +7,7 @@ Tenant::Tenant(){
 	type = PERSON;
 	agreeability = (rand()%5)+1;
 	budget = ((((rand()%450)+1)+50) *10);
+	rent = budget;
 }
 
 
@@ -18,12 +19,26 @@ Tenant::Tenant(int type){
 	if(type == PERSON){
 		this->name = "Average Joe";
 		this->budget = (((rand()%450)+50) *10);
-		this->rent = this->budget;
+		this->rent = (((rand()%450)+50) *10);
+		while(true){
+			if(this->rent < this->budget)
+				break;
+
+			this->rent = (((rand()%450)+50) *10);
+		}
+				
 	}
+
 	else if(type == BUSINESS){
 		this->name = "Average Business";
 		this->budget = (((rand()%800)+200)*10);
-		this->rent = this->budget;
+		this->rent = (((rand()%800)+200)*10);
+		while(true){
+			if(this->rent < this->budget)
+				break;
+
+			this->rent = (((rand()%800)+200)*10);
+		}
 	}
 }
 
@@ -49,3 +64,8 @@ int Tenant::get_type() const{return this->type;}
 int Tenant::get_agreeability() const{return this->agreeability;}
 int Tenant::get_budget() const{return this->budget;}
 int Tenant::get_rent() const{ return this->rent;}
+
+
+void Tenant::set_rent(int rent) { this->rent = rent;}
+
+void Tenant::set_name(string name) {this->name = name;}

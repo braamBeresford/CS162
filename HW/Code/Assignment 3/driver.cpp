@@ -11,11 +11,11 @@ int main(){
 	Player p;
 	Property ** properties;
 	properties = set_prop_array(p.get_num_properties());
+	// print_properties(properties, p.get_num_properties(), false);
+	// change_rent(properties, p);
+	print_properties(properties, p.get_num_properties(), true);
 
-
-		// cout << "Paid: " << properties[2]->get_type() << ' '<< properties[2]->get_tenant(0).get_agreeability() << endl;
-
-	turn(properties, p);
+	// turn(properties, p);
 
 	for(int i =0; i < p.get_num_properties(); i++)
 		delete properties[i];

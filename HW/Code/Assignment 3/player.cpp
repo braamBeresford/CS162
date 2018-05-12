@@ -5,7 +5,7 @@ using namespace std;
 
 Player::Player(){
     cout << "What is your name? \n";
-    cin >> this->name;
+    getline(cin, this->name);
 
     this->balance = 500000;
     this->num_properties = 9;

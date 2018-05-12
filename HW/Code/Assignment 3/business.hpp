@@ -17,6 +17,8 @@ class Business:public Property{
 
         Tenant& get_tenant(int index); //TODO
         
+        
+        void remove_tenant(int index);
 };
 
 

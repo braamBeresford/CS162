@@ -16,6 +16,7 @@ class Apartment:public Property{
         ~Apartment();
 
         Tenant& get_tenant(int index); 
+        void remove_tenant(int index);
         
 };
 

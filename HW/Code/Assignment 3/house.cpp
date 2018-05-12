@@ -17,3 +17,11 @@ House::~House(){
 Tenant& House::get_tenant(int index){
 	return t;
 }
+
+
+void House::remove_tenant(int index){
+	t.set_rent(0);
+
+	this->num_tenants = 0;
+	this->t.set_name("No tenant");
+}

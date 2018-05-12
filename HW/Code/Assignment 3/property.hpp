@@ -14,9 +14,12 @@ class Property{
 		static const float tax = 0.015;
 		int num_tenants;
 		bool sold;
+		int ID;
 		
 	public:
 		Property();
+		
+		
 		virtual ~Property();
 		Property& operator=(const Property& copy);
 
@@ -27,10 +30,11 @@ class Property{
 		string get_location() const;
 		float get_mortgage() const;
 		string get_type() const;
-		int get_num_tenants() const;
+		virtual int get_num_tenants() const;
 		int get_mortgage_paid() const;
 		virtual Tenant& get_tenant(int index){}
 		bool get_sold() const;
+		int get_ID() const;
 
 
 		//Setters
@@ -40,6 +44,10 @@ class Property{
 		void set_mortgage(float mortage);
 		void increase_mortgage_paid();
 		void set_sold(bool sold);
+		void set_ID(int ID);
+
+
+		virtual void remove_tenant(int index){};
 
 };
 

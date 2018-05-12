@@ -20,6 +20,7 @@ class Tenant{
 		Tenant & operator=(const Tenant&);
 
 		void set_rent(int rent);
+		void set_name(string name);
 
 		string get_name() const;
 		int get_type() const;
@@ -27,6 +28,7 @@ class Tenant{
 		int get_budget() const;
 		int get_rent() const;
 		
+
 };
 
 #endif

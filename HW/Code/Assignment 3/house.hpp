@@ -16,6 +16,7 @@ class House:public Property{
 
 
 		Tenant& get_tenant(int index); 
+		void remove_tenant(int index);
 		
 };
 
