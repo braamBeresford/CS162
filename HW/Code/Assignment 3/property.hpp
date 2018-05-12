@@ -18,8 +18,6 @@ class Property{
 		
 	public:
 		Property();
-		
-		
 		virtual ~Property();
 		Property& operator=(const Property& copy);
 

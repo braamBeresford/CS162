@@ -41,6 +41,6 @@ int Player::get_num_owned() const{return this->num_owned;}
 void Player::set_name(string name){this->name = name;}
 void Player::set_balance(int bal){this->balance = bal;}
 
-void Player::change_balace(int change){this->balance += change;}
+void Player::change_balance(int change){this->balance += change;}
 
 void Player::change_num_owned(int change){this->num_owned += change;}

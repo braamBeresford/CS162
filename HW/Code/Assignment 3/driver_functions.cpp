@@ -38,20 +38,39 @@ int get_int(string usr_input) {
 	return return_int;
 }
 
-void print_properties(Property** props, const int num, bool with_tenants){
-    for(int i = 0; i < num; i++){
-		cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << " \tValue: ";
-		cout << props[i]->get_value() << " \tMortgage Left: " << props[i]->get_value() - props[i]->get_mortgage_paid() << endl;
-		if(with_tenants){
-			if(props[i]->get_type() == HOUSE)
-				cout << "\tRent: " << props[i]->get_tenant(1).get_rent() << " Tenant: " << props[i]->get_tenant(1).get_name() << endl; //The param in get tenant are irelevant but required
+void print_properties(Property** props, const int num, bool with_tenants, bool sold_only){
+	if(!sold_only){
+		for(int i = 0; i < num; i++){
+			cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << " \tValue: ";
+			cout << props[i]->get_value() << " \tMortgage Left: " << props[i]->get_value() - props[i]->get_mortgage_paid() << endl;
+			if(with_tenants){
+				if(props[i]->get_type() == HOUSE)
+					cout << "\tRent: " << props[i]->get_tenant(1).get_rent() << " Tenant: " << props[i]->get_tenant(1).get_name() << endl; //The param in get tenant are irelevant but required
 
-			else
-				for(int j = 0; j < props[i]->get_num_tenants(); j++)
-					cout << "\tRent: " << props[i]->get_tenant(j).get_rent() << " Tenant: " << props[i]->get_tenant(j).get_name() << endl;
+				else
+					for(int j = 0; j < props[i]->get_num_tenants(); j++)
+						cout << "\tRent: " << props[i]->get_tenant(j).get_rent() << " Tenant: " << props[i]->get_tenant(j).get_name() << endl;
+			}
 		}
+	}
 
-    }
+	else{
+		for(int i = 0; i < num; i++){
+
+			if(props[i]->get_sold()){
+				cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << " \tValue: ";
+				cout << props[i]->get_value() << " \tMortgage Left: " << props[i]->get_value() - props[i]->get_mortgage_paid() << endl;
+				if(with_tenants){
+					if(props[i]->get_type() == HOUSE)
+						cout << "\tRent: " << props[i]->get_tenant(1).get_rent() << " Tenant: " << props[i]->get_tenant(1).get_name() << endl; //The param in get tenant are irelevant but required
+
+					else
+						for(int j = 0; j < props[i]->get_num_tenants(); j++)
+							cout << "\tRent: " << props[i]->get_tenant(j).get_rent() << " Tenant: " << props[i]->get_tenant(j).get_name() << endl;
+				}
+			}
+		}
+	}
 }
 
 Property ** set_prop_array(const int &num_properties){
@@ -75,7 +94,6 @@ void get_mortgage_payments(Property ** properties, int & mortgage_due, const Pla
 				if(properties[i]->get_sold())
 					mortgage_due += properties[i]->get_mortgage();
 
-				cout << properties[i]->get_mortgage() << endl;
 			}
 }
 
@@ -89,18 +107,59 @@ void get_rent(Property ** properties, int & rent_collected, const Player& p){
 	}
 }
 
+void buy_property(Property ** prop, const Player& p){
+	int first = rand()% p.get_num_properties(), second = rand()% p.get_num_properties(), third = rand()% p.get_num_properties();
+	string input;
+	
+	while(true){
+		first = rand()% p.get_num_properties();
+		second = rand()% p.get_num_properties();
+		third = rand()% p.get_num_properties();
+		if(!prop[first]->get_sold() && !prop[second]->get_sold() && !prop[third]->get_sold()){
+			cout << "Would you like to buy one of the following? " << endl;
+			cout << "1. "; print_properties(&(prop[first]), 1, true, false);
+			cout << "2. "; print_properties(&(prop[second]), 1, true, false);
+			cout << "3. "; print_properties(&(prop[third]), 1, true, false);
+			break;
+		}
+	}
+
+	printf("Which of the following would you like to buy? (Q) for quit\n");
+	getline(cin, input);
+	if (input == "1")
+		prop[first]->set_sold(true);
+
+	else if(input == "2")
+		prop[second]->set_sold(true);
+	
+	else if(input == "3")
+		prop[third]->set_sold(true); 
+}
+
 
 void turn(Property ** properties, Player & p){
+	string input = "";
 	int taxes_due = 0;
 	int mortgage_due = 0;
 	int rent_collected = 0;
 	while(true){
+		system("clear");
+		cout << "Current Balance  " << p.get_balance() << endl;
 		get_mortgage_payments(properties, mortgage_due, p);
-		// check_for_leaving_residents(properties);
+		p.change_balance(-mortgage_due);
 		get_rent(properties, rent_collected,  p);
-		break;
+		p.change_balance(rent_collected);
+		printf("This is your current portfolio: ");
+		print_properties(properties, p.get_num_properties(), true, true);
+		printf("\nWould you like to buy or sell any property (B)/(S)/(No)? ");
+		getline(cin, input);
+		if(input == "B" || input == "b")
+			buy_property( properties,  p);
+		
 	}
 } 
+
+
 
 void change_rent_house(Property** prop, const Player& p, const int &property_id){
 	string input;
@@ -125,6 +184,28 @@ void change_rent_apart(Property** prop, const Player& p, const int &property_id)
 	cout << "Current rent : " << prop[property_id]->get_tenant(1).get_rent() << endl;
 	cout << "What would you like the new rent to be? ";
 	getline(cin, input);
+
+	for(int i = 0; i < prop[property_id]->get_num_tenants(); i++){
+		prop[property_id]->get_tenant(i).set_rent(get_int(input));
+		cout << "BUDGET FOR APART" <<  prop[property_id]->get_tenant(i).get_budget() << endl;
+		if(get_int(input) > prop[property_id]->get_tenant(i).get_budget()){
+
+			if(prop[property_id]->get_tenant(i).get_agreeability() >= 3){
+				cout << "The rent is too high for this tenant! " << endl;
+				cout << "The tenant has decided to leave!" << endl;
+				prop[property_id]->remove_tenant(i);
+			}
+
+			else if(prop[property_id]->get_tenant(i).get_agreeability() <= 3){
+				cout << "The rent is too high for this tenant, they won't leave though!" << endl;
+				cout << "They will continue to live here and not pay rent until it is below their budget again " << endl;
+			}
+		}
+
+		else{
+			prop[property_id]->get_tenant(i).set_rent(get_int(input));
+		}
+	}
 }
 
 void change_rent(Property** prop, const Player& p){
@@ -149,20 +230,3 @@ void change_rent(Property** prop, const Player& p){
 	
 
 }
-
-
-
-// void check_for_leaving_residents(Property** properties, const Player& p){
-// 	for(int i = 0; i < p.get_num_properties(); i++){
-// 		if(properties[i]->get_sold()){
-// 			for(int j = 0; j < properties[i]->get_num_tenants(); j++){
-// 				if(properties[i]->get_tenant(j).get_rent() > properties[i]->get_tenant(j).get_budget()){
-// 					if(properties[i]->get_tenant(j).get_agreeability() != 1 && properties[i]->get_tenant(j).get_agreeability() != 2){
-
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// }
-
