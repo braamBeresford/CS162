@@ -41,7 +41,7 @@ int get_int(string usr_input) {
 void print_properties(Property** props, const int num, bool with_tenants, bool sold_only){
 	if(!sold_only){
 		for(int i = 0; i < num; i++){
-			cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << "Location: " << props[i]->get_location() << " \tValue: ";
+			cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << "  Location: " << props[i]->get_location() << " \tValue: ";
 			cout << props[i]->get_value() << " \tMortgage Left: " << props[i]->get_value() - props[i]->get_mortgage_paid() << endl;
 			if(with_tenants){
 				if(props[i]->get_type() == HOUSE)
@@ -91,7 +91,7 @@ Property ** set_prop_array(const int &num_properties){
 
 void get_mortgage_payments(Property ** properties, int & mortgage_due, const Player& p){
 	for(int i = 0; i < p.get_num_properties(); i++){
-				if(properties[i]->get_sold()){
+				if(properties[i]->get_sold() && (properties[i]->get_mortgage_paid() < properties[i]->get_value())){
 					mortgage_due += properties[i]->get_mortgage();
 					properties[i]->increase_mortgage_paid();
 				}
@@ -349,7 +349,14 @@ void turn(Property ** properties, Player & p){
 	int taxes_collected = 0;
 	int mortgage_due = 0;
 	int rent_collected = 0;
-	while(true){
+	bool win = false;
+	bool lose = false;
+	while(!win && !lose){
+		if(p.get_balance() >= 1000000)
+			win = true;
+		if(p.get_balance() <= 0)
+			lose = true;
+
 		taxes_collected = 0; mortgage_due = 0; rent_collected = 0;
 		system("clear");
 		get_mortgage_payments(properties, mortgage_due, p);
@@ -380,6 +387,12 @@ void turn(Property ** properties, Player & p){
 			change_rent(properties, p);
 		turn++;
 	}
+
+	if(win)
+		printf("Congratulations! You have won the game! You have over a MILLION dollars\n");
+
+	if(lose)
+		printf("You have lost :( Better luck next time \n");
 } 
 
 
