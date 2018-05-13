@@ -16,7 +16,7 @@ Property::Property(){
 		case(2):
 			this->location = "MID"; break;
 		case(3):
-			this->location = "SW"; break;
+			this->location = "SE"; break;
 		case(4):
 			this->location = "NW"; break;
 	}

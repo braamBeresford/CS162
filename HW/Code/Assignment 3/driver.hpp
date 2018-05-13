@@ -19,4 +19,7 @@ void turn(Property ** properties, Player & p);
 void check_for_leaving_residents(Property** properties, const Player &p, const int &property_id);
 void buy_property(Property ** prop, const Player& p);
 void get_taxes(Property** properties, int& taxes_collected, const Player& p);
+void change_rent_biz(Property** prop, const Player& p, const int &property_id);
+void sell_property(Property** prop, Player& p);
+void random_event(Property ** prop, const Player & p);
 #endif

@@ -9,13 +9,8 @@ Business::Business(){
     this->tenants =  new Tenant[this->num_tenants];
     for(int i = 0; i < this->num_tenants; i++){
         this->tenants[i] = Tenant(BUSINESS);
-        if(lowest_rent > this->tenants[i].get_rent())
-            lowest_rent =  this->tenants[i].get_rent();
     }
     
-    for(int i = 0; i < this->num_tenants; i++){
-        this->tenants[i].set_rent(lowest_rent);
-    }
     type = BIZ;
 }
 

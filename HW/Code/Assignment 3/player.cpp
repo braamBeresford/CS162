@@ -25,6 +25,8 @@ Player& Player::operator=(const Player& copy){
     this->balance = copy.balance;
     this->num_properties =  copy.num_properties;
     this->num_owned = copy.num_owned;
+
+    return *this;
 }
 //Getters
 string Player::get_name() const{return this->name;}

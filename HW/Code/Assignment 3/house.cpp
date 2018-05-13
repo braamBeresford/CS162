@@ -7,7 +7,9 @@ House::House(){
 	this->type = HOUSE;
 	Tenant t(PERSON);
 	this->num_tenants = 1;
-	this->t.set_budget((rand()%500) + 100);
+	this->t.set_rent((rand()%500) + 100);
+	this->t.set_budget(t.get_rent() - (rand()%50)); // Insure budget is at or below rent
+	
 }
 
 

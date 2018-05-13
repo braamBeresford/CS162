@@ -41,7 +41,7 @@ int get_int(string usr_input) {
 void print_properties(Property** props, const int num, bool with_tenants, bool sold_only){
 	if(!sold_only){
 		for(int i = 0; i < num; i++){
-			cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << " \tValue: ";
+			cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << "Location: " << props[i]->get_location() << " \tValue: ";
 			cout << props[i]->get_value() << " \tMortgage Left: " << props[i]->get_value() - props[i]->get_mortgage_paid() << endl;
 			if(with_tenants){
 				if(props[i]->get_type() == HOUSE)
@@ -49,7 +49,7 @@ void print_properties(Property** props, const int num, bool with_tenants, bool s
 
 				else
 					for(int j = 0; j < props[i]->get_num_tenants(); j++)
-						cout << "\tRent: " << props[i]->get_tenant(j).get_rent() << " Tenant: " << props[i]->get_tenant(j).get_name() << endl;
+						cout << "\tID: " << j << " Rent: " << props[i]->get_tenant(j).get_rent() << " Tenant: " << props[i]->get_tenant(j).get_name() << endl;
 			}
 		}
 	}
@@ -58,7 +58,7 @@ void print_properties(Property** props, const int num, bool with_tenants, bool s
 		for(int i = 0; i < num; i++){
 
 			if(props[i]->get_sold()){
-				cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << " \tValue: ";
+				cout << "\nProperty ID: " << props[i]->get_ID() << " Property type: " << props[i]->get_type() << "Location: " << props[i]->get_location() << " \tValue: ";
 				cout << props[i]->get_value() << " \tMortgage Left: " << props[i]->get_value() - props[i]->get_mortgage_paid() << endl;
 				if(with_tenants){
 					if(props[i]->get_type() == HOUSE)
@@ -66,7 +66,7 @@ void print_properties(Property** props, const int num, bool with_tenants, bool s
 
 					else
 						for(int j = 0; j < props[i]->get_num_tenants(); j++)
-							cout << "\tRent: " << props[i]->get_tenant(j).get_rent() << " Tenant: " << props[i]->get_tenant(j).get_name() << endl;
+							cout << "\tID: " << j << " Rent: " << props[i]->get_tenant(j).get_rent() << " Tenant: " << props[i]->get_tenant(j).get_name() << endl;
 				}
 			}
 		}
@@ -91,8 +91,10 @@ Property ** set_prop_array(const int &num_properties){
 
 void get_mortgage_payments(Property ** properties, int & mortgage_due, const Player& p){
 	for(int i = 0; i < p.get_num_properties(); i++){
-				if(properties[i]->get_sold())
+				if(properties[i]->get_sold()){
 					mortgage_due += properties[i]->get_mortgage();
+					properties[i]->increase_mortgage_paid();
+				}
 
 			}
 }
@@ -101,7 +103,8 @@ void get_rent(Property ** properties, int & rent_collected, const Player& p){
 	for(int i =0; i < p.get_num_properties(); i++){
 		if(properties[i]->get_sold()){ 
 			for(int j = 0; j < properties[i]->get_num_tenants(); j++){
-				rent_collected += properties[i]->get_tenant(j).get_rent();				
+				if(properties[i]->get_tenant(j).get_budget() >= properties[i]->get_tenant(j).get_rent())
+					rent_collected += properties[i]->get_tenant(j).get_rent();				
 			}
 		}
 	}
@@ -145,6 +148,25 @@ void buy_property(Property ** prop, const Player& p){
 		prop[third]->set_sold(true); 
 }
 
+void sell_property(Property** prop, Player& p){
+	string input = "";
+	while(true){
+		printf("What property would you like to sell? ");
+		getline(cin, input);
+		if(prop[get_int(input)]->get_sold())
+			break;
+
+		printf("You don't own that property, please input a valid one! \n");
+	}
+	int index = get_int(input);
+	int money_back = prop[index]->get_mortgage_paid();
+
+	printf("You'll recieve %d for this property\n", money_back);
+	p.change_balance(money_back);
+	prop[index]->set_sold(false);
+
+}
+
 void change_rent_house(Property** prop, const Player& p, const int &property_id){
 	string input;
 	cout << "Current rent : " << prop[property_id]->get_tenant(1).get_rent() << endl;
@@ -171,7 +193,7 @@ void change_rent_apart(Property** prop, const Player& p, const int &property_id)
 
 	for(int i = 0; i < prop[property_id]->get_num_tenants(); i++){
 		prop[property_id]->get_tenant(i).set_rent(get_int(input));
-		cout << "BUDGET FOR APART" <<  prop[property_id]->get_tenant(i).get_budget() << endl;
+		// cout << "BUDGET FOR APART" <<  prop[property_id]->get_tenant(i).get_budget() << endl;
 		if(get_int(input) > prop[property_id]->get_tenant(i).get_budget()){
 
 			if(prop[property_id]->get_tenant(i).get_agreeability() >= 3){
@@ -195,6 +217,28 @@ void change_rent_apart(Property** prop, const Player& p, const int &property_id)
 	
 }
 
+void change_rent_biz(Property** prop, const Player& p, const int &property_id){
+	string input;
+	int index = 0;
+	printf("Which unit of your business complex would you like to adjust the rent on? \n");
+	getline(cin, input);
+	index = get_int(input);
+	cout << "What would you like the new rent to be? ";
+	getline(cin, input);
+	prop[property_id]->get_tenant(index).set_rent(get_int(input));
+
+
+	if(prop[property_id]->get_tenant(index).get_rent() > prop[property_id]->get_tenant(index).get_budget()){
+		if(prop[property_id]->get_tenant(index).get_agreeability() >= 3){
+			printf("The rent was too high for this tenant! They have left! \n");
+			prop[property_id]->remove_tenant(index);
+		}
+	}
+	else
+		printf("New rent is set!\n");
+	
+}
+
 void change_rent(Property** prop, const Player& p){
 	string input;
 	int property_id;
@@ -209,23 +253,98 @@ void change_rent(Property** prop, const Player& p){
 	}
 
 	if(prop[property_id]->get_type() == HOUSE){
-		cout << "Help " << prop[property_id]->get_tenant(1).get_budget() << endl;
+		// cout << "Help " << prop[property_id]->get_tenant(1).get_budget() << endl;
 		change_rent_house(prop, p, property_id);
 	}
 
 	else if(prop[property_id]->get_type() == APART){
-		cout << "Welp2" << endl;
 		change_rent_apart(prop, p, property_id);
 	}
 
-	
+	else if(prop[property_id]->get_type() == BIZ){
+		 change_rent_biz(prop, p, property_id);
+	}
+
+
 	printf("Press enter to continue");
 	getline(cin, input);
 
 }
 
+void random_event(Property ** prop, const Player & p){
+	int event = rand()%6;
+	int loc = 0;
+	int change = 0;
+	float mult = 0;
+	string location = "";
+	bool crash = false;
+	if(event == 1){
+		printf("A hurricane has hit! All properties in SE have decrease value by 50 percent! \n");
+		location = "SE";
+		mult = -0.5;
+	}
+	else if(event == 2){
+		printf("A tornado has hit your properties in the MID, value decrease of 30 percent! \n");
+		location = "MID";
+		mult = -0.3;
+	}
 
+	else if(event == 3){
+		printf("An earthquake has hit your properties in the NW! Value decreased by 10 percent! \n");
+		location = "NW";
+		mult = -0.1;
+	}
+
+	else if(event == 4){
+		printf("A wildfire has hit your properties in the SW! Value decreased by 25 percent! \n");
+		location = "SW";
+		mult = -0.25;
+
+	}
+	else if(event == 5){
+		printf("Double trouble! Goldman made a mistake! Stock crash! All properties decrease by 30 percent! \n");
+		mult = -0.3;
+		crash = true;
+
+	}
+
+	else if(event == 0){
+		loc = rand()%5;
+		switch(event){
+			case(0): location = "SW"; break;
+			case(1): location = "MID"; break;
+			case(2): location = "NW"; break;
+			case(3): location = "NE"; break;
+			case(4): location = "SE"; break;
+		}
+		mult = 0.2;
+		printf("Economic growth! %s see's 20 percent value growth! \n", location.c_str());
+
+	}
+
+	for(int i = 0; i < p.get_num_properties(); i++){
+		if(crash == true){
+			if(prop[i]->get_sold()){
+				change = prop[i]->get_value() + prop[i]->get_value()*mult;
+				prop[i]->set_value(change);
+			}
+		}
+
+
+		else{
+			if(prop[i]->get_location() == location && prop[i]->get_sold()){
+				change = prop[i]->get_value() + prop[i]->get_value()*mult;
+				prop[i]->set_value(change);
+			}
+		}
+
+	}
+}
+
+
+//TODO I need to fix the houses rent raising issues! 	
 void turn(Property ** properties, Player & p){
+	int turn =0;
 	string input = "";
 	int taxes_collected = 0;
 	int mortgage_due = 0;
@@ -237,23 +356,29 @@ void turn(Property ** properties, Player & p){
 		p.change_balance(-mortgage_due);
 		get_rent(properties, rent_collected, p);
 		p.change_balance(rent_collected);
-		get_taxes(properties, taxes_collected, p);
-		p.change_balance(-taxes_collected);
-		cout << "Current Balance  " << p.get_balance() << endl;
+		if(turn%12 == 0){
+			cout << "It's tax season! " << endl;
+			get_taxes(properties, taxes_collected, p);
+			p.change_balance(-taxes_collected);
+		}
+		cout << "Current Balance  " << p.get_balance() <<  "  Current Turn  " << turn << endl;
 		printf("Taxes: -%d  Mortgage: -%d  Rent: %d\n", taxes_collected, mortgage_due, rent_collected);
 		printf("Total revenue this turn: %d\n", (-1)*taxes_collected + (-1)*mortgage_due + rent_collected);
+		random_event(properties, p);
 		printf("This is your current portfolio: ");
 		print_properties(properties, p.get_num_properties(), true, true);
 		printf("\nWould you like to buy or sell any property (B)/(S)/(No)? ");
 		getline(cin, input);
 		if(input == "B" || input == "b")
 			buy_property( properties,  p);
+		else if(input == "s" || input == "S")
+			sell_property(properties, p);
 
 		printf("Would you like to change rents? (Y/N) ");
 		getline(cin, input);
 		if(input == "Y" || input == "y")
 			change_rent(properties, p);
-		
+		turn++;
 	}
 } 
 
