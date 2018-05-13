@@ -7,6 +7,7 @@ House::House(){
 	this->type = HOUSE;
 	Tenant t(PERSON);
 	this->num_tenants = 1;
+	this->t.set_budget((rand()%500) + 100);
 }
 
 

@@ -18,4 +18,5 @@ void get_mortgage_payments(Property ** properties, int &mortgage_due, const Play
 void turn(Property ** properties, Player & p);
 void check_for_leaving_residents(Property** properties, const Player &p, const int &property_id);
 void buy_property(Property ** prop, const Player& p);
+void get_taxes(Property** properties, int& taxes_collected, const Player& p);
 #endif

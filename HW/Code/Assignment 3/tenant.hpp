@@ -21,6 +21,7 @@ class Tenant{
 
 		void set_rent(int rent);
 		void set_name(string name);
+		void set_budget(int budg);
 
 		string get_name() const;
 		int get_type() const;

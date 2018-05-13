@@ -98,7 +98,7 @@ void get_mortgage_payments(Property ** properties, int & mortgage_due, const Pla
 }
 
 void get_rent(Property ** properties, int & rent_collected, const Player& p){
-	for(int i =0; i < p.get_num_properties(); i++){//
+	for(int i =0; i < p.get_num_properties(); i++){
 		if(properties[i]->get_sold()){ 
 			for(int j = 0; j < properties[i]->get_num_tenants(); j++){
 				rent_collected += properties[i]->get_tenant(j).get_rent();				
@@ -106,6 +106,15 @@ void get_rent(Property ** properties, int & rent_collected, const Player& p){
 		}
 	}
 }
+
+void get_taxes(Property** properties, int& taxes_collected, const Player& p){
+	for(int i =0; i < p.get_num_properties(); i++){
+		if(properties[i]->get_sold()){ 
+			taxes_collected+= properties[i]->get_value() * 0.015;
+		}
+	}
+}
+
 
 void buy_property(Property ** prop, const Player& p){
 	int first = rand()% p.get_num_properties(), second = rand()% p.get_num_properties(), third = rand()% p.get_num_properties();
@@ -135,31 +144,6 @@ void buy_property(Property ** prop, const Player& p){
 	else if(input == "3")
 		prop[third]->set_sold(true); 
 }
-
-
-void turn(Property ** properties, Player & p){
-	string input = "";
-	int taxes_due = 0;
-	int mortgage_due = 0;
-	int rent_collected = 0;
-	while(true){
-		system("clear");
-		cout << "Current Balance  " << p.get_balance() << endl;
-		get_mortgage_payments(properties, mortgage_due, p);
-		p.change_balance(-mortgage_due);
-		get_rent(properties, rent_collected,  p);
-		p.change_balance(rent_collected);
-		printf("This is your current portfolio: ");
-		print_properties(properties, p.get_num_properties(), true, true);
-		printf("\nWould you like to buy or sell any property (B)/(S)/(No)? ");
-		getline(cin, input);
-		if(input == "B" || input == "b")
-			buy_property( properties,  p);
-		
-	}
-} 
-
-
 
 void change_rent_house(Property** prop, const Player& p, const int &property_id){
 	string input;
@@ -194,6 +178,7 @@ void change_rent_apart(Property** prop, const Player& p, const int &property_id)
 				cout << "The rent is too high for this tenant! " << endl;
 				cout << "The tenant has decided to leave!" << endl;
 				prop[property_id]->remove_tenant(i);
+				
 			}
 
 			else if(prop[property_id]->get_tenant(i).get_agreeability() <= 3){
@@ -206,6 +191,8 @@ void change_rent_apart(Property** prop, const Player& p, const int &property_id)
 			prop[property_id]->get_tenant(i).set_rent(get_int(input));
 		}
 	}
+
+	
 }
 
 void change_rent(Property** prop, const Player& p){
@@ -214,19 +201,61 @@ void change_rent(Property** prop, const Player& p){
 	while(true){
 		printf("Which property would you like to change the rent on? ");
 		getline(cin, input);
-		if(is_int(input) && (property_id = get_int(input)) < p.get_num_properties())
+		if(is_int(input) && (property_id = get_int(input)) < p.get_num_properties()){
 			break;
+		}
 
 		printf("Please provide a valid integer in the range of the number of properties!\n ");
 	}
 
 	if(prop[property_id]->get_type() == HOUSE){
+		cout << "Help " << prop[property_id]->get_tenant(1).get_budget() << endl;
 		change_rent_house(prop, p, property_id);
 	}
 
 	else if(prop[property_id]->get_type() == APART){
+		cout << "Welp2" << endl;
 		change_rent_apart(prop, p, property_id);
 	}
+
 	
+	printf("Press enter to continue");
+	getline(cin, input);
 
 }
+
+
+void turn(Property ** properties, Player & p){
+	string input = "";
+	int taxes_collected = 0;
+	int mortgage_due = 0;
+	int rent_collected = 0;
+	while(true){
+		taxes_collected = 0; mortgage_due = 0; rent_collected = 0;
+		system("clear");
+		get_mortgage_payments(properties, mortgage_due, p);
+		p.change_balance(-mortgage_due);
+		get_rent(properties, rent_collected, p);
+		p.change_balance(rent_collected);
+		get_taxes(properties, taxes_collected, p);
+		p.change_balance(-taxes_collected);
+		cout << "Current Balance  " << p.get_balance() << endl;
+		printf("Taxes: -%d  Mortgage: -%d  Rent: %d\n", taxes_collected, mortgage_due, rent_collected);
+		printf("Total revenue this turn: %d\n", (-1)*taxes_collected + (-1)*mortgage_due + rent_collected);
+		printf("This is your current portfolio: ");
+		print_properties(properties, p.get_num_properties(), true, true);
+		printf("\nWould you like to buy or sell any property (B)/(S)/(No)? ");
+		getline(cin, input);
+		if(input == "B" || input == "b")
+			buy_property( properties,  p);
+
+		printf("Would you like to change rents? (Y/N) ");
+		getline(cin, input);
+		if(input == "Y" || input == "y")
+			change_rent(properties, p);
+		
+	}
+} 
+
+
+

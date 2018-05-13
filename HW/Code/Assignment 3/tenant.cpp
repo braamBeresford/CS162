@@ -69,3 +69,4 @@ int Tenant::get_rent() const{ return this->rent;}
 void Tenant::set_rent(int rent) { this->rent = rent;}
 
 void Tenant::set_name(string name) {this->name = name;}
+void Tenant::set_budget(int budg) {this->budget =  budg;}
