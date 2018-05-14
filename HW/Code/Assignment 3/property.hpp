@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: property.hpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: Decleration of property class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #ifndef PROPERTY
 #define PROPERTY
 #include "includes.hpp"

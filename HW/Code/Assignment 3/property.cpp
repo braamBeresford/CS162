@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: property.cpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: implementation of property class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #include "property.hpp"
 
 using namespace std;

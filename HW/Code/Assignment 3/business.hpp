@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: business.hpp 
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: decleration of business class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #ifndef BIZ_H
 #define BIZ_H
 

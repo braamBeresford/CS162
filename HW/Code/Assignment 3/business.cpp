@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: business.cpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: implementation of business class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #include "business.hpp"
 
 using namespace std;

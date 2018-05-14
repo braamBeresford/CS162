@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: driver.hpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: decleration of driver libraries and functions
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #ifndef DRIVER
 #define DRIVER
 

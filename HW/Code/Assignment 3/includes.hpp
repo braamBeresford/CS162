@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: includes.hpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: import and macros for classes
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #ifndef INCLUDES
 #define INCLUDES
 

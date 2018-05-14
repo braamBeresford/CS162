@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: player.cpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: Implementation of player class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #include "player.hpp"
 
 using namespace std;

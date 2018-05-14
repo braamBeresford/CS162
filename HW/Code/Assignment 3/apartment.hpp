@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: apartment.hpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: Apartment definition
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/ 
 #ifndef APART_H
 #define APART_H
 

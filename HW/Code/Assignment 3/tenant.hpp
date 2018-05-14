@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: tenant.hpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: Decleration of tenant class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #ifndef TENANT
 #define TENANT
 #include "includes.hpp"

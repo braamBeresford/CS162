@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: apartment.cpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: Implementation of apartment class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/ 
 #include "apartment.hpp"
 
 using namespace std;

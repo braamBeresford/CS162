@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: tenant.cpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: implementation of tenant class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #include "tenant.hpp"
 
 using namespace std;

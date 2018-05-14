@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: house.hpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: Implimentation of house class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #include "house.hpp"
 
 using namespace std;

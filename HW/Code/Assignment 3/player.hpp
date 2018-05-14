@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: player.hpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: Decleration of player class
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #ifndef PLAYER
 #define PLAYER
 #include "includes.hpp"

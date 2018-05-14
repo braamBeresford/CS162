@@ -1,9 +1,14 @@
+/********************************************************************* 
+ ** Program Filename: driver.cpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: implementation of main
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #include "driver.hpp"
 
-
 using namespace std;
-
-
 
 int main(){
 	srand(time(NULL));
@@ -11,14 +16,7 @@ int main(){
 	Player p;
 	Property ** properties;
 	properties = set_prop_array(p.get_num_properties());
-	// print_properties(properties, p.get_num_properties(), true, false);
-	// change_rent(properties, p);
-
-	// buy_property( properties,  p);
-	// print_properties(properties, p.get_num_properties(), true, true);
-
-
-	
+		
 	turn(properties, p);
 
 	for(int i =0; i < p.get_num_properties(); i++)

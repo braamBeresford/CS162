@@ -1,3 +1,11 @@
+/********************************************************************* 
+ ** Program Filename: driver_functions.cpp
+ ** Author: Braam Beresford
+ ** Date: 05/13/18
+ ** Description: Non-main non-class functions
+ ** Input: N/A
+ ** Output: Screen print
+ *********************************************************************/
 #include "driver.hpp"
 
 using namespace std;
