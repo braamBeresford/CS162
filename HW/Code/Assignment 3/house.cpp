@@ -10,6 +10,13 @@
 
 using namespace std;
 
+/********************************************************************* 
+ ** Function: House
+ ** Description: House constructor
+ ** Parameters:  Sets basic atributes
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 House::House(){
 	this->value = ((rand()%500)+100)*100;
 	this->type = HOUSE;
@@ -21,15 +28,26 @@ House::House(){
 }
 
 
-House::~House(){
-}
 
-
+/********************************************************************* 
+ ** Function: Get_tenant
+ ** Description: Returns specific tenant
+ ** Parameters:  None, only one tenant
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 Tenant& House::get_tenant(int index){
 	return t;
 }
 
 
+/********************************************************************* 
+ ** Function: remove tenant
+ ** Description: Sets rent to 0 to simulate no tenant
+ ** Parameters:  None
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void House::remove_tenant(int index){
 	t.set_rent(0);
 

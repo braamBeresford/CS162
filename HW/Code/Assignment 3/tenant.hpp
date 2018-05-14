@@ -12,6 +12,13 @@
 
 using namespace std;
 
+/********************************************************************* 
+ ** Function: Tenant class
+ ** Description: Handles operation for both tenant types
+ ** Parameters:  N/A
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 class Tenant{
 	private:
 		string name;

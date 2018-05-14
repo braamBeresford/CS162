@@ -12,6 +12,14 @@
 
 using namespace std;
 
+
+/********************************************************************* 
+ ** Function: Player class
+ ** Description: Handles basic game data for player
+ ** Parameters: N/A 
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 class Player{
     private:
         string name;

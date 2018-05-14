@@ -46,6 +46,13 @@ int get_int(string usr_input) {
 	return return_int;
 }
 
+/********************************************************************* 
+ ** Function: print_properties
+ ** Description: Prints properties
+ ** Parameters:  Sold bool decides if tenants should be printed
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void print_properties(Property** props, const int num, bool with_tenants, bool sold_only){
 	if(!sold_only){
 		for(int i = 0; i < num; i++){
@@ -81,6 +88,13 @@ void print_properties(Property** props, const int num, bool with_tenants, bool s
 	}
 }
 
+/********************************************************************* 
+ ** Function: set_prop_array
+ ** Description: Sets up property array with three of each
+ ** Parameters: Given parameter higher than 1 
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 Property ** set_prop_array(const int &num_properties){
 	Property ** properties  = new Property*[num_properties];
 	
@@ -97,6 +111,13 @@ Property ** set_prop_array(const int &num_properties){
 	return properties;
 }
 
+/********************************************************************* 
+ ** Function: get_mortgage_payments
+ ** Description: Gets mortgage payments
+ ** Parameters:  Valid properties, mortgage reference, and player
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void get_mortgage_payments(Property ** properties, int & mortgage_due, const Player& p){
 	for(int i = 0; i < p.get_num_properties(); i++){
 				if(properties[i]->get_sold() && (properties[i]->get_mortgage_paid() < properties[i]->get_value())){
@@ -107,6 +128,13 @@ void get_mortgage_payments(Property ** properties, int & mortgage_due, const Pla
 			}
 }
 
+/********************************************************************* 
+ ** Function: get_rent
+ ** Description: collects rent from all properties
+ ** Parameters: correctly setup properties array
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void get_rent(Property ** properties, int & rent_collected, const Player& p){
 	for(int i =0; i < p.get_num_properties(); i++){
 		if(properties[i]->get_sold()){ 
@@ -118,6 +146,13 @@ void get_rent(Property ** properties, int & rent_collected, const Player& p){
 	}
 }
 
+/********************************************************************* 
+ ** Function: get_taxes
+ ** Description: collects taxes from all properties in the array
+ ** Parameters:  valid properties array
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void get_taxes(Property** properties, int& taxes_collected, const Player& p){
 	for(int i =0; i < p.get_num_properties(); i++){
 		if(properties[i]->get_sold()){ 
@@ -126,7 +161,13 @@ void get_taxes(Property** properties, int& taxes_collected, const Player& p){
 	}
 }
 
-
+/********************************************************************* 
+ ** Function: buy_property
+ ** Description: allows the user to buy property
+ ** Parameters: Valid property array and player object
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void buy_property(Property ** prop, const Player& p){
 	int first = rand()% p.get_num_properties(), second = rand()% p.get_num_properties(), third = rand()% p.get_num_properties();
 	string input;
@@ -156,6 +197,13 @@ void buy_property(Property ** prop, const Player& p){
 		prop[third]->set_sold(true); 
 }
 
+/********************************************************************* 
+ ** Function: sell_property
+ ** Description: sells property array
+ ** Parameters:  property array and player object
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void sell_property(Property** prop, Player& p){
 	string input = "";
 	while(true){
@@ -175,6 +223,13 @@ void sell_property(Property** prop, Player& p){
 
 }
 
+/********************************************************************* 
+ ** Function: change_rent_house
+ ** Description: changes rent of a house property
+ ** Parameters:  valid house index
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void change_rent_house(Property** prop, const Player& p, const int &property_id){
 	string input;
 	cout << "Current rent : " << prop[property_id]->get_tenant(1).get_rent() << endl;
@@ -193,6 +248,13 @@ void change_rent_house(Property** prop, const Player& p, const int &property_id)
 		printf("New rent is set!\n");
 }
 
+/********************************************************************* 
+ ** Function: change rent apartement
+ ** Description: Changes the rent and apartment block
+ ** Parameters:  valid property array and player constant
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void change_rent_apart(Property** prop, const Player& p, const int &property_id){
 	string input;
 	cout << "Current rent : " << prop[property_id]->get_tenant(1).get_rent() << endl;
@@ -225,6 +287,13 @@ void change_rent_apart(Property** prop, const Player& p, const int &property_id)
 	
 }
 
+/********************************************************************* 
+ ** Function: changes the rent on a business
+ ** Description: allows user to change rent on an apartment
+ ** Parameters: valid property array and player constant
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void change_rent_biz(Property** prop, const Player& p, const int &property_id){
 	string input;
 	int index = 0;
@@ -247,6 +316,13 @@ void change_rent_biz(Property** prop, const Player& p, const int &property_id){
 	
 }
 
+/********************************************************************* 
+ ** Function: change rent
+ ** Description: general function for rent changing
+ ** Parameters: Access to property specific change rent functions
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void change_rent(Property** prop, const Player& p){
 	string input;
 	int property_id;
@@ -279,6 +355,13 @@ void change_rent(Property** prop, const Player& p){
 
 }
 
+/********************************************************************* 
+ ** Function: random_event
+ ** Description: Produces a random event every turn
+ ** Parameters:  Must be called
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void random_event(Property ** prop, const Player & p){
 	int event = rand()%6;
 	int loc = 0;
@@ -350,7 +433,13 @@ void random_event(Property ** prop, const Player & p){
 }
 
 
-//TODO I need to fix the houses rent raising issues! 	
+/********************************************************************* 
+ ** Function: turn
+ ** Description: handles every turn
+ ** Parameters:  properties array and player constant
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void turn(Property ** properties, Player & p){
 	int turn =0;
 	string input = "";

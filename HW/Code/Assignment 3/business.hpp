@@ -15,6 +15,13 @@
 
 using namespace std;
 
+/********************************************************************* 
+ ** Function: Business class
+ ** Description: Handles business specific proeprties
+ ** Parameters: Inherit property
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 class Business:public Property{
     private:
         Tenant * tenants;

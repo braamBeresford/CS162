@@ -15,6 +15,13 @@
 
 using namespace std;
 
+/********************************************************************* 
+ ** Class: Apartment class 
+ ** Description: Holds data specific to the apratment type
+ ** Parameters: A programmer and compile
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 class Apartment:public Property{
     private:
         Tenant * tenants;

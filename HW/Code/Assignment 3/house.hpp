@@ -14,13 +14,19 @@
 
 using namespace std;
 
+/********************************************************************* 
+ ** Function: House
+ ** Description: House specific property
+ ** Parameters:  N/A
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 class House:public Property{
 	private:
 		Tenant t;
 
 	public:
 		House();
-		~House();
 
 
 		Tenant& get_tenant(int index); 

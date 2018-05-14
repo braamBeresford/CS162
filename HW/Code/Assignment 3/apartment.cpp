@@ -10,6 +10,13 @@
 
 using namespace std;
 
+/********************************************************************* 
+ ** Function: Apartment
+ ** Description: Apartment constructor
+ ** Parameters:  Apartment must be created
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 Apartment::Apartment(){
     int lowest_rent = 1000000;
     this->value = ((rand()%300)+300)*100;
@@ -27,14 +34,36 @@ Apartment::Apartment(){
     this->type = APART;
 }
 
+/********************************************************************* 
+ ** Function: ~Apartment
+ ** Description: Apartment distructor
+ ** Parameters: Basically nothing
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 Apartment::~Apartment(){
     delete [] tenants;
 }
 
+
+/********************************************************************* 
+ ** Function: get_tenant
+ ** Description: gets the tenant
+ ** Parameters:  valid index
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 Tenant& Apartment::get_tenant(int index){
     return (tenants[index]);
 }
 
+/********************************************************************* 
+ ** Function: remove_tenant
+ ** Description: Removes tenant
+ ** Parameters:  A tenant
+ ** Pre-Conditions: NA
+ ** Post-Conditions: NA
+ *********************************************************************/ 
 void Apartment::remove_tenant(int index){
 	Tenant * temp = new Tenant[this->num_tenants-1];
     for(int i = 0; i < num_tenants; i++){

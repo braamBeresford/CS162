@@ -12,6 +12,13 @@
 #include "tenant.hpp"
 using namespace std;
 
+/********************************************************************* 
+ ** Function: Property class
+ ** Description: Base class for all properties
+ ** Parameters: N/A
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 class Property{
 	protected:
 		int value;

@@ -10,6 +10,13 @@
 
 using namespace std;
 
+/********************************************************************* 
+ ** Function: Main
+ ** Description: handles creation and destruction of core component
+ ** Parameters: Start program
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 int main(){
 	srand(time(NULL));
 

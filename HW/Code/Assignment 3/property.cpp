@@ -10,6 +10,13 @@
 
 using namespace std;
 
+/********************************************************************* 
+ ** Function: Property constructor
+ ** Description: Creates property with baisc values
+ ** Parameters:  Must be called
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 Property::Property(){
     int temp = rand()%5;
 	this->mortgage = ((rand()%400)+10)*10;
@@ -32,7 +39,13 @@ Property::Property(){
 
 
 
-
+/********************************************************************* 
+ ** Function: Property operator overload
+ ** Description: Overloads operator for deep copy
+ ** Parameters:  Valid object
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 Property& Property::operator=(const Property& copy){
 	this->value = copy.value;
 	this->type = copy.type;
@@ -44,10 +57,13 @@ Property& Property::operator=(const Property& copy){
 
 }
 
-Property::~Property(){
-	// cout <<"destroyed" << endl;
-}
-
+/********************************************************************* 
+ ** Function: Property Getters
+ ** Description: Gets basic values from property
+ ** Parameters: Valid inputs
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 int Property::get_num_tenants() const{
 	return this->num_tenants;
 }
@@ -72,8 +88,13 @@ bool Property::get_sold() const{return this->sold;}
 int Property::get_ID() const{return this->ID; }
 
 
-
-
+/********************************************************************* 
+ ** Function: Property setters
+ ** Description: Set values for property class
+ ** Parameters: Valid input
+ ** Pre-Conditions: N/A
+ ** Post-Conditions: N/A
+ *********************************************************************/ 
 void Property::set_value(float value) {
     this->value = value;
 }
