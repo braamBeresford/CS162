@@ -1,0 +1,512 @@
+desc: (none)
+cmd: assignment2
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=1421666
+mem_heap_B=27
+mem_heap_extra_B=13
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=1423353
+mem_heap_B=91
+mem_heap_extra_B=45
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=1435549
+mem_heap_B=135
+mem_heap_extra_B=57
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=1442799
+mem_heap_B=703
+mem_heap_extra_B=73
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=1445013
+mem_heap_B=8895
+mem_heap_extra_B=81
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=1450199
+mem_heap_B=8851
+mem_heap_extra_B=69
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=1466765
+mem_heap_B=8887
+mem_heap_extra_B=89
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=1472349
+mem_heap_B=101110635
+mem_heap_extra_B=3925
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=1324228213
+mem_heap_B=101110635
+mem_heap_extra_B=3925
+mem_stacks_B=0
+heap_tree=peak
+n2: 101110635 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 101101760 0x4052B6: Restaurant::load_data() (restaurant.cpp:168)
+  n0: 101101760 0x40179C: main (driver.cpp:21)
+ n0: 8875 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=10
+#-----------
+time=1324232104
+mem_heap_B=101101875
+mem_heap_extra_B=3901
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=1324235618
+mem_heap_B=101110708
+mem_heap_extra_B=3940
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=1324242626
+mem_heap_B=101110635
+mem_heap_extra_B=3925
+mem_stacks_B=0
+heap_tree=detailed
+n2: 101110635 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 101101760 0x4052B6: Restaurant::load_data() (restaurant.cpp:168)
+  n0: 101101760 0x40179C: main (driver.cpp:21)
+ n0: 8875 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=13
+#-----------
+time=1324246714
+mem_heap_B=101110889
+mem_heap_extra_B=4023
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=1324249186
+mem_heap_B=101111010
+mem_heap_extra_B=4062
+mem_stacks_B=0
+heap_tree=detailed
+n2: 101111010 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 101101760 0x4052B6: Restaurant::load_data() (restaurant.cpp:168)
+  n0: 101101760 0x40179C: main (driver.cpp:21)
+ n0: 9250 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=1324253990
+mem_heap_B=101125511
+mem_heap_extra_B=4105
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=1324272035
+mem_heap_B=101125537
+mem_heap_extra_B=4119
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=1324275254
+mem_heap_B=101125715
+mem_heap_extra_B=4189
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=1324280675
+mem_heap_B=101125972
+mem_heap_extra_B=4316
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=1324282955
+mem_heap_B=101117268
+mem_heap_extra_B=4316
+mem_stacks_B=0
+heap_tree=detailed
+n2: 101117268 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 101101760 0x4052B6: Restaurant::load_data() (restaurant.cpp:168)
+  n0: 101101760 0x40179C: main (driver.cpp:21)
+ n0: 15508 in 5 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=20
+#-----------
+time=1324286374
+mem_heap_B=101117301
+mem_heap_extra_B=4339
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=1324290977
+mem_heap_B=101126628
+mem_heap_extra_B=4420
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=1324293953
+mem_heap_B=101126885
+mem_heap_extra_B=4539
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=1324298574
+mem_heap_B=101126857
+mem_heap_extra_B=4511
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=1324302801
+mem_heap_B=101127183
+mem_heap_extra_B=4665
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=1324305079
+mem_heap_B=101127160
+mem_heap_extra_B=4672
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=1324309888
+mem_heap_B=101127371
+mem_heap_extra_B=4757
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=1324313751
+mem_heap_B=101127359
+mem_heap_extra_B=4769
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=1324316600
+mem_heap_B=101127589
+mem_heap_extra_B=4859
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=1324320489
+mem_heap_B=101127582
+mem_heap_extra_B=4882
+mem_stacks_B=0
+heap_tree=detailed
+n2: 101127582 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 101101760 0x4052B6: Restaurant::load_data() (restaurant.cpp:168)
+  n0: 101101760 0x40179C: main (driver.cpp:21)
+ n0: 25822 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=30
+#-----------
+time=1324324658
+mem_heap_B=101127899
+mem_heap_extra_B=5013
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=1324327971
+mem_heap_B=101127855
+mem_heap_extra_B=5001
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=1324332868
+mem_heap_B=101128232
+mem_heap_extra_B=5128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=1324336245
+mem_heap_B=101128175
+mem_heap_extra_B=5129
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=1324340906
+mem_heap_B=101119642
+mem_heap_extra_B=5198
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=1324355851
+mem_heap_B=101119668
+mem_heap_extra_B=5228
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=1324361142
+mem_heap_B=101128402
+mem_heap_extra_B=5222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=1324387387
+mem_heap_B=101120210
+mem_heap_extra_B=5214
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=1324388239
+mem_heap_B=101128402
+mem_heap_extra_B=5222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=1324395514
+mem_heap_B=101120210
+mem_heap_extra_B=5214
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=1324399120
+mem_heap_B=101128458
+mem_heap_extra_B=5238
+mem_stacks_B=0
+heap_tree=detailed
+n2: 101128458 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 101101760 0x4052B6: Restaurant::load_data() (restaurant.cpp:168)
+  n0: 101101760 0x40179C: main (driver.cpp:21)
+ n0: 26698 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=41
+#-----------
+time=1324402465
+mem_heap_B=101128402
+mem_heap_extra_B=5222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=1324407942
+mem_heap_B=101128402
+mem_heap_extra_B=5222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=1324413417
+mem_heap_B=101128402
+mem_heap_extra_B=5222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=1324416041
+mem_heap_B=101128458
+mem_heap_extra_B=5238
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=1324419386
+mem_heap_B=101128402
+mem_heap_extra_B=5222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=1324421998
+mem_heap_B=101128466
+mem_heap_extra_B=5230
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=1324425837
+mem_heap_B=101128402
+mem_heap_extra_B=5222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=1324428449
+mem_heap_B=101128450
+mem_heap_extra_B=5230
+mem_stacks_B=0
+heap_tree=detailed
+n2: 101128450 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 101101760 0x4052B6: Restaurant::load_data() (restaurant.cpp:168)
+  n0: 101101760 0x40179C: main (driver.cpp:21)
+ n0: 26690 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=49
+#-----------
+time=1324432639
+mem_heap_B=101119278
+mem_heap_extra_B=5050
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=1623525427
+mem_heap_B=17414
+mem_heap_extra_B=1186
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=1623557390
+mem_heap_B=17388
+mem_heap_extra_B=1172
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=1623558247
+mem_heap_B=16923
+mem_heap_extra_B=965
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=1623559137
+mem_heap_B=2163
+mem_heap_extra_B=797
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=1623560015
+mem_heap_B=1631
+mem_heap_extra_B=577
+mem_stacks_B=0
+heap_tree=detailed
+n4: 1631 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 935 0x4EEACF7: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib64/libstdc++.so.6.0.19)
+  n1: 935 0x4EEB909: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib64/libstdc++.so.6.0.19)
+   n2: 935 0x4EEB9B2: std::string::reserve(unsigned long) (in /usr/lib64/libstdc++.so.6.0.19)
+    n2: 935 0x4EEBC1D: std::string::append(char const*, unsigned long) (in /usr/lib64/libstdc++.so.6.0.19)
+     n3: 935 0x4EA35D0: std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&) (in /usr/lib64/libstdc++.so.6.0.19)
+      n1: 763 0x402AC6: Menu::load_ingredients(std::basic_fstream<char, std::char_traits<char> >&, int, int) (menu.cpp:245)
+       n1: 763 0x402916: Menu::load_data() (menu.cpp:228)
+        n1: 763 0x4055DA: Restaurant::load_data() (restaurant.cpp:189)
+         n0: 763 0x40179C: main (driver.cpp:21)
+      n1: 172 0x402782: Menu::load_data() (menu.cpp:220)
+       n1: 172 0x4055DA: Restaurant::load_data() (restaurant.cpp:189)
+        n0: 172 0x40179C: main (driver.cpp:21)
+      n0: 0 in 12 places, all below massif's threshold (1.00%)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n1: 488 0x4026EF: Menu::load_data() (menu.cpp:216)
+  n1: 488 0x4055DA: Restaurant::load_data() (restaurant.cpp:189)
+   n0: 488 0x40179C: main (driver.cpp:21)
+ n1: 208 0x404532: Pizza::create_ingredients_arr(int) (pizza.cpp:118)
+  n1: 208 0x4028FA: Menu::load_data() (menu.cpp:226)
+   n1: 208 0x4055DA: Restaurant::load_data() (restaurant.cpp:189)
+    n0: 208 0x40179C: main (driver.cpp:21)
+ n0: 0 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=55
+#-----------
+time=1623560871
+mem_heap_B=1164
+mem_heap_extra_B=348
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=1623561771
+mem_heap_B=642
+mem_heap_extra_B=102
+mem_stacks_B=0
+heap_tree=empty

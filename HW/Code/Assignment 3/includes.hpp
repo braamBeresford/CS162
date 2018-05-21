@@ -6,8 +6,8 @@
  ** Input: N/A
  ** Output: Screen print
  *********************************************************************/
-#ifndef INCLUDES
-#define INCLUDES
+#ifndef INCLUDES_HPP
+#define INCLUDES_HPP
 
 using namespace std;
 

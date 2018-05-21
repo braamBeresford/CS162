@@ -206,20 +206,29 @@ void buy_property(Property ** prop, const Player& p){
  *********************************************************************/ 
 void sell_property(Property** prop, Player& p){
 	string input = "";
+	bool quit = false;
 	while(true){
 		printf("What property would you like to sell? ");
 		getline(cin, input);
-		if(prop[get_int(input)]->get_sold())
+		if(input == "q" || input == "Q"){
+			quit = true;
+			break;
+		}
+		if(prop[get_int(input)]->get_sold() && (prop[get_int(input)]->get_num_tenants() == 0 || prop[get_int(input)]->get_tenant(1).get_rent() ==0))
 			break;
 
-		printf("You don't own that property, please input a valid one! \n");
+		printf("You don't own that property or it has tenant! Please input a valid one! \n");
 	}
-	int index = get_int(input);
-	int money_back = prop[index]->get_mortgage_paid();
+	if(!quit){
+		int index = get_int(input);
+		int money_back = prop[index]->get_mortgage_paid();
 
-	printf("You'll recieve %d for this property\n", money_back);
-	p.change_balance(money_back);
-	prop[index]->set_sold(false);
+		printf("You'll recieve %d for this property\n", money_back);
+		p.change_balance(money_back);
+		prop[index]->set_sold(false);
+	}
+	else
+		printf("You chose not to sell!\n");
 
 }
 
@@ -257,13 +266,13 @@ void change_rent_house(Property** prop, const Player& p, const int &property_id)
  *********************************************************************/ 
 void change_rent_apart(Property** prop, const Player& p, const int &property_id){
 	string input;
-	cout << "Current rent : " << prop[property_id]->get_tenant(1).get_rent() << endl;
 	cout << "What would you like the new rent to be? ";
 	getline(cin, input);
 
 	for(int i = 0; i < prop[property_id]->get_num_tenants(); i++){
 		prop[property_id]->get_tenant(i).set_rent(get_int(input));
-		// cout << "BUDGET FOR APART" <<  prop[property_id]->get_tenant(i).get_budget() << endl;
+		cout << "Current rent " << prop[property_id]->get_tenant(i).get_rent() << endl; 
+		cout << "BUDGET FOR APART  " <<  prop[property_id]->get_tenant(i).get_budget() << endl;
 		if(get_int(input) > prop[property_id]->get_tenant(i).get_budget()){
 
 			if(prop[property_id]->get_tenant(i).get_agreeability() >= 3){
@@ -273,7 +282,7 @@ void change_rent_apart(Property** prop, const Player& p, const int &property_id)
 				
 			}
 
-			else if(prop[property_id]->get_tenant(i).get_agreeability() <= 3){
+			else if(prop[property_id]->get_tenant(i).get_agreeability() < 3){
 				cout << "The rent is too high for this tenant, they won't leave though!" << endl;
 				cout << "They will continue to live here and not pay rent until it is below their budget again " << endl;
 			}
@@ -303,7 +312,8 @@ void change_rent_biz(Property** prop, const Player& p, const int &property_id){
 	cout << "What would you like the new rent to be? ";
 	getline(cin, input);
 	prop[property_id]->get_tenant(index).set_rent(get_int(input));
-
+	cout << "Rent check " << prop[property_id]->get_tenant(index).get_rent() << endl;
+	cout << "Budget check " << prop[property_id]->get_tenant(index).get_budget() << endl;
 
 	if(prop[property_id]->get_tenant(index).get_rent() > prop[property_id]->get_tenant(index).get_budget()){
 		if(prop[property_id]->get_tenant(index).get_agreeability() >= 3){
@@ -482,6 +492,8 @@ void turn(Property ** properties, Player & p){
 		getline(cin, input);
 		if(input == "Y" || input == "y")
 			change_rent(properties, p);
+		for(int i =0; i < properties[1]->get_num_tenants(); i++)
+			cout << "OUTSIDE EVERYTHNG " << properties[1]->get_tenant(i).get_rent() << endl;
 		turn++;
 	}
 

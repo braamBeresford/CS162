@@ -84,7 +84,7 @@ void Menu::view_ingredients(int index) const {
 }
 
 
-int Menu::get_cost(int index, string size) {
+int Menu::get_cost(int index, string size) const{
 	if(size == "small")
 		return pizzas[index].get_small_cost();
 		
@@ -209,6 +209,7 @@ void Menu::create_array(int length){
  *********************************************************************/
 void Menu::load_data() {
 	string name;
+	cin >> name;
 	int smll_cost, med_cost, lg_cost, num_ingredients;
 	fstream f;
 	verify_file_open(f, MENU_NAME);

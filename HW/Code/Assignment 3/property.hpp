@@ -33,7 +33,7 @@ class Property{
 		
 	public:
 		Property();
-		virtual ~Property();
+		virtual ~Property(){};
 		Property& operator=(const Property& copy);
 
 

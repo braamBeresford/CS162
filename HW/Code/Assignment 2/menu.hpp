@@ -39,7 +39,7 @@ public:
 	void view_num_pizzas() const;
 	void view_menu() const;
 	void view_ingredients(int index) const;
-	int get_cost(int index, string size) const;
+	int get_cost(int index, string size) ;
 
 	//Mutators
 	void load_data();
