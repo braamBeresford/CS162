@@ -1,9 +1,10 @@
-#ifndef DRIVER_HPP
-#define DRIVER_HPP
+#ifndef CLASS_HPP
+#define CLASS_HPP
 
 #include <iostream>
 #include <string>
 #include <vector>
+
 
 #include "insect.hpp"
 #include "gameEngine.hpp"
