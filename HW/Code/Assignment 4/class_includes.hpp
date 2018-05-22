@@ -3,6 +3,7 @@
 
 #define BEE 12
 #define THROWER 13
+#define FIRE 14
 
 #include <iostream>
 #include <string>
