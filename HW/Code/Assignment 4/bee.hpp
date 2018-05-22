@@ -1,13 +1,13 @@
-#ifndef THROWER_HPP
-#define THROWER_HPP
+#ifndef BEE_HPP
+#define BEE_HPP
 
 #include "class_includes.hpp"
 using namespace std;
 
 
-class Thrower:public Insect{
+class Bee:public Insect{
     public:
-        Thrower();
+        Bee();
         void turn(vector<vector<Insect*> > & board, int &food, int current);
 
 };

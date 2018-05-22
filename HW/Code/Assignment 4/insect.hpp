@@ -12,6 +12,7 @@ class Insect{
         int armor;
         int attack;
         int food_cost;
+        int type;
 
     public:
         Insect();
@@ -24,6 +25,7 @@ class Insect{
         int get_armor() const;
         int get_attack() const;
         int get_food_cost() const;
+        int get_type() const;
 
 
         //Setters
@@ -31,6 +33,7 @@ class Insect{
         void set_armor(int a);
         void set_attack(int a);
         void set_food_cost(int f);
+        void change_armor(int a);
 
 };
 

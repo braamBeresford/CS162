@@ -3,10 +3,10 @@
 
 using namespace std;
 
+#endif
 #ifdef DEBUG
 void test(){
 cout << "HELLO!" << endl;}
-#endif
 
 
 int main(){
