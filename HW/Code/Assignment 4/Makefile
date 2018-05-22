@@ -1,8 +1,8 @@
 CC = g++ -g 
 exe_file = assignment4
 
-$(exe_file): driver.o insect.o bodyguard.o gameEngine.o harvester.o longT.o ninja.o player.o shortT.o thrower.o wall.o bee.o
-	$(CC) driver.o insect.o bodyguard.o gameEngine.o harvester.o longT.o ninja.o player.o shortT.o thrower.o wall.o bee.o -o $(exe_file)
+$(exe_file): driver.o insect.o bodyguard.o gameEngine.o harvester.o longT.o ninja.o player.o shortT.o thrower.o wall.o bee.o fire.o
+	$(CC) driver.o insect.o bodyguard.o gameEngine.o harvester.o longT.o ninja.o player.o shortT.o thrower.o wall.o bee.o fire.o -o $(exe_file)
 driver.o: driver.cpp
 	$(CC) -c driver.cpp
 insect.o: insect.cpp
@@ -27,6 +27,8 @@ wall.o: wall.cpp
 	$(CC) -c wall.cpp
 bee.o: bee.cpp
 	$(CC) -c bee.cpp
+fire.o: fire.cpp
+	$(CC) -c fire.cpp
 run: $(exe_file)
 	$(exe_file)
 clean:

@@ -9,11 +9,11 @@
 #include <string>
 #include <vector>
 
-#include "insect.hpp"
-#include "gameEngine.hpp"
-#include "harvester.hpp"
-#include "thrower.hpp"
-#include "bee.hpp"
+// #include "insect.hpp"
+// #include "gameEngine.hpp"
+// #include "harvester.hpp"
+// #include "thrower.hpp"
+// #include "bee.hpp"
 
 
 #endif

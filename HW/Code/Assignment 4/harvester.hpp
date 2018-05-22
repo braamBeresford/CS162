@@ -1,6 +1,7 @@
 #ifndef HARVESTER_HPP
 #define HARVESTER_HPP
 #include "class_includes.hpp"
+#include "insect.hpp"
 
 using namespace std;
 

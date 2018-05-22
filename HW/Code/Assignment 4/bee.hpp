@@ -2,6 +2,7 @@
 #define BEE_HPP
 
 #include "class_includes.hpp"
+#include "insect.hpp"
 using namespace std;
 
 
