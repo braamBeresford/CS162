@@ -7,6 +7,7 @@
 #define SHORT 15
 #define LONG 16
 #define WALL 17
+#define NINJA 18
 
 #include <iostream>
 #include <string>

@@ -6,6 +6,7 @@ int main(){
 
 	vector<vector<Insect*> > board(10);
 
-	game.start_game(board);
+	game.startGame(board);
+	// game.printBoard(board);
 	return 0;		
 }
