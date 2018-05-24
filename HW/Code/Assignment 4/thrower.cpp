@@ -12,14 +12,10 @@ Thrower::Thrower(){
 
 void Thrower::turn(vector<vector<Insect*> > & board, int &food, int current){
     bool attack_complete = false;
-    for(int j = 1; j < 3; j++){
-        if(board[current+j].size()!= 0 ){
-            for(int i =0; i < board[current+j].size(); i++){
-                if(board[current+j][i]->get_type() == BEE && attack_complete == false){
-                    board[current+j][i]->change_armor(-1);
-                    attack_complete = true;
-                }
-            }
+    for(int i =0; i < board[current].size(); i++){
+        if(board[current][i]->get_type() == BEE && attack_complete == false){
+            board[current][i]->change_armor(-1);
+            attack_complete = true;
         }
     }
 }

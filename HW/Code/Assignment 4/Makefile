@@ -30,6 +30,6 @@ bee.o: bee.cpp
 fire.o: fire.cpp
 	$(CC) -c fire.cpp
 run: $(exe_file)
-	$(exe_file)
+	./$(exe_file)
 clean:
 	rm -f *.out *.o *~ $(exe_file)

@@ -7,5 +7,5 @@ int main(){
 	vector<vector<Insect*> > board(10);
 
 	game.start_game(board);
-	return 0;
+	return 0;		
 }
