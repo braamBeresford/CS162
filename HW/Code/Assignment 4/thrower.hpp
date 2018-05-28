@@ -10,6 +10,5 @@ class Thrower:public Insect{
     public:
         Thrower();
         void turn(vector<vector<Insect*> > & board, int &food, int current);
-
 };
 #endif

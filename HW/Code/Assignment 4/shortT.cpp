@@ -25,7 +25,6 @@ void ShortT::turn(vector<vector<Insect*> > & board, int &food, int current){
                     board[j][i]->change_armor(-1);
                     attack_complete = true;
                     cout << "j: " << j << " i: " << i << endl;
-
                 }
             }
         }
