@@ -71,12 +71,21 @@ void GameEngine::startGame(vector<vector<Insect*> > & board){
     // board[2].erase(board[2].begin());
 }
 
+void GameEngine::Turn(vector<vector<Insect*> > & board){
+    for(int i =0; i < board.size(); i++)[
+        for(int j = 0; j < board[i].size(); j++){
+            board[i][j]->turn(board, food, i);
+
+        }
+    ]
+}
 
 void GameEngine::removeDead(vector<vector<Insect*> > & board){
     for(int i =0; i < board.size(); i++){
-        for(int j =0; j < board[i].size(); i++)
+        for(int j =0; j < board[i].size(); j++)
             if(board[i][j]->get_armor() <= 0){
                 board[i].erase(board[i].begin()+j);
+                removeDead(board);
             }
     }
 }
