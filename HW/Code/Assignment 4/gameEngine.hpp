@@ -1,5 +1,6 @@
 #ifndef GAME_ENGINE_HPP
 #define GAME_ENGINE_HPP
+#include <stdlib.h>
 #include "class_includes.hpp"
 #include "stdio.h"
 #include "insect.hpp"
@@ -9,6 +10,9 @@
 #include "shortT.hpp"
 #include "fire.hpp"
 #include "wall.hpp"
+#include "ninja.hpp"
+#include "harvester.hpp"
+#include "bodyguard.hpp"
 
 
 
@@ -19,9 +23,9 @@ class GameEngine{
         int food;
     public:
         GameEngine();
-        void startGame(vector<vector<Insect*> > & board);
-        void printBoard(vector<vector<Insect*> > & board);
+        void startGame(vector<vector<Insect*> > & );
+        void displayBoard(vector<vector<Insect*> > & );
+        void removeDead(vector<vector<Insect*> > & );
 };
-
 
 #endif

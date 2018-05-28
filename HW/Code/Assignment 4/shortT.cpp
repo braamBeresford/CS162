@@ -12,11 +12,10 @@ ShortT::ShortT(){
 
 void ShortT::turn(vector<vector<Insect*> > & board, int &food, int current){
     int max = 2; //These make sure you don't try and access over the edge of the board
-    if((board.size()-1) - current < 2) //The two is for attack distance (2 sqaures)
+    if(current + 2 >= board.size())//The two is for attack distance (2 sqaures)
         max = (board.size()-1) - current;
     max += current;
     
-
     bool attack_complete = false;
     for(int j = current+1; j <  max; j++){ 
         if(board[j].size()!= 0 ){

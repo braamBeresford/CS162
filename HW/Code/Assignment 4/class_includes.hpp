@@ -8,6 +8,8 @@
 #define LONG 16
 #define WALL 17
 #define NINJA 18
+#define BODYGUARD 19
+#define HARVESTER 20
 
 #include <iostream>
 #include <string>

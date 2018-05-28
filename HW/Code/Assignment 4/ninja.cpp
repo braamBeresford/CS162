@@ -6,7 +6,7 @@ Ninja::Ninja(){
     this->armor = 1;
     this->food_cost = 4;
     this->attack = 1;
-    this->type = THROWER;
+    this->type = NINJA;
 }
 
 
