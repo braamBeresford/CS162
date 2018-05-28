@@ -33,7 +33,7 @@ class Insect{
         void set_armor(int a);
         void set_attack(int a);
         void set_food_cost(int f);
-        void change_armor(int a);
+        virtual void change_armor(int a);
 
 };
 
