@@ -19,7 +19,7 @@ class Insect{
         // virtual ~Insect(){};
         // Insect(const Insect&);
         Insect & operator=(const Insect &);
-        virtual void turn(vector<vector<Insect*> > & board, int &food, int current){};
+        virtual void turn(vector<vector<Insect*> > & board, int &food, int current)=0;
 
         //Getters
         int get_armor() const;

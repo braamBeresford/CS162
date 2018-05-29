@@ -35,7 +35,15 @@ void GameEngine::userChoice(vector<vector<Insect*> > & board){
     cout << "Which position would you like to place it on? ";
     getline(cin, input);
     position = atoi(input.c_str());
-
+    int ant_present = 0;    
+	    for(int j =0; j < board[position].size(); j++){
+		    if(board[position][j]->get_type() == BEE ){
+		    }
+		    else if(board[position][j]->get_type() == NINJA){
+			   ant_present++;
+		    }
+	    }
+    if(ant_present == 1 || ant_present == 0)
     switch(choice){
         case 1: board[position].push_back(new Harvester); break;
         case 2: board[position].push_back(new Thrower); break;
