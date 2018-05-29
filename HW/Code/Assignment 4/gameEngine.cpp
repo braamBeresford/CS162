@@ -36,7 +36,6 @@ void GameEngine::userChoice(vector<vector<Insect*> > & board){
     getline(cin, input);
     position = atoi(input.c_str());
 
-    if()
     switch(choice){
         case 1: board[position].push_back(new Harvester); break;
         case 2: board[position].push_back(new Thrower); break;
