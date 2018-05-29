@@ -7,24 +7,111 @@ GameEngine::GameEngine(){
     this->food = 50;
 }
 
+void GameEngine::userChoice(vector<vector<Insect*> > & board){
+    string input = "";
+    int choice = 0;
+    int position = 0;
+    cout << "Would you like to place an ant?(Y/N) ";
+    getline(cin, input);
+    if(input == "y" || input == "Y"){
+        cout << "Would you like to place a: " << endl;
+        cout << "\t1. Harverster" << endl;
+        cout << "\t2. Thrower" << endl;
+        cout << "\t3. Fire" << endl;
+        cout << "\t4. Long Thrower" << endl;
+        cout << "\t5. Short Thrower" << endl;
+        cout << "\t6. Wall" << endl;
+        cout << "\t7. Ninja" << endl;
+        cout << "\t8. Bodyguard" << endl;
+        cout << "\t0. None" << endl;
+    }
+    getline(cin, input);
+    choice = atoi(input.c_str());
+
+    if(choice <1 || choice >8){
+        return;
+    }
+    
+    cout << "Which position would you like to place it on? ";
+    getline(cin, input);
+    position = atoi(input.c_str());
+
+    if()
+    switch(choice){
+        case 1: board[position].push_back(new Harvester); break;
+        case 2: board[position].push_back(new Thrower); break;
+        case 3: board[position].push_back(new Fire); break;
+        case 4: board[position].push_back(new LongT); break;
+        case 5: board[position].push_back(new ShortT); break;
+        case 6: board[position].push_back(new Wall); break;
+        case 7: board[position].push_back(new Ninja); break;
+        case 8: board[position].push_back(new Bodyguard); break;
+
+    }
+
+}
+
+void GameEngine::countBees(vector<vector<Insect*> > & board, int & num_bees){
+    num_bees = 0;
+    for(int i =0; i < board.size(); i++){
+        for(int j =0; j < board[i].size(); j++)
+            if(board[i][j]->get_type() == BEE){
+                num_bees++;
+            }
+    }
+}
+
+void GameEngine::fireDeath(vector<vector<Insect*> > & board){
+    for(int i =0; i < board.size(); i++){
+        for(int j = 0; j < board[i].size(); j++){
+            if(board[i][j]->get_type() == FIRE)
+                board[i][j]->turn(board, food, i);
+
+        }
+    }
+}
 void GameEngine::startGame(vector<vector<Insect*> > & board){
+    int num_bees = 1;
+    bool game_run = true;
+
+    while(game_run && num_bees > 0){
+        board[9].push_back(new Bee);
+
+        displayBoard(board);
+        userChoice(board);
+        turn(board);
+        fireDeath(board);
+        removeDead(board);
+        countBees(board, num_bees);
+
+        for(int j = 0; j < board[6].size(); j++)
+            cout << "Health " << board[6][j]->get_armor() << endl;
+        // break;
+
+    }
+
     // board[2].push_back(new Thrower);
     // board[3].push_back(new LongT);
-    displayBoard(board);
-    board[3].push_back(new Harvester);
-    board[3].push_back(new Bee);
-    board[3].push_back(new Bee);
+    // displayBoard(board);
+    // board[3].push_back(new Harvester);
+    // board[3].push_back(new Harvester);
+    // board[3].push_back(new Bee);
+    // board[3].push_back(new Bee);
     
-    displayBoard(board);
-    board[3][0]->turn(board, food, 2);
-    removeDead(board);
-    board[3][1]->turn(board, food, 3);
-    removeDead(board);
-    board[3][2]->turn(board, food, 3);
-    removeDead(board);
+    // board[5].push_back(new Harvester);
+    // board[5].push_back(new Bee);
 
-    displayBoard(board);
-    cout << "tyep " << board[3][0]->get_type() << endl;
+    // turn(board);
+    // removeDead(board);
+    
+    // board[3][0]->turn(board, food, 2);
+    // removeDead(board);
+    // board[3][1]->turn(board, food, 3);
+    // removeDead(board);
+    // board[3][2]->turn(board, food, 3);
+    // removeDead(board);
+
+    // displayBoard(board);
 
 
     // board[4].push_back(new LongT);
@@ -71,21 +158,19 @@ void GameEngine::startGame(vector<vector<Insect*> > & board){
     // board[2].erase(board[2].begin());
 }
 
-void GameEngine::Turn(vector<vector<Insect*> > & board){
-    for(int i =0; i < board.size(); i++)[
+void GameEngine::turn(vector<vector<Insect*> > & board){
+    for(int i =0; i < board.size(); i++){
         for(int j = 0; j < board[i].size(); j++){
             board[i][j]->turn(board, food, i);
 
         }
-    ]
+    }
 }
-
 void GameEngine::removeDead(vector<vector<Insect*> > & board){
     for(int i =0; i < board.size(); i++){
         for(int j =0; j < board[i].size(); j++)
             if(board[i][j]->get_armor() <= 0){
                 board[i].erase(board[i].begin()+j);
-                removeDead(board);
             }
     }
 }
@@ -113,13 +198,13 @@ string PrintEntity(vector<vector<Insect*> > & board, int y, int x){
     else if(board[x][y]->get_type() == FIRE){ 
         if(board[x][y]->get_armor() == 1)
             temp =  red + "F" + reset;
+        else
+            temp =  green + "F" + reset;
     }
 
     else if(board[x][y]->get_type() == HARVESTER){ 
          if(board[x][y]->get_armor() == 1)
             temp =  red + "H" + reset;
-        else   
-            temp = " ";
     }
 
     else if(board[x][y]->get_type() == LONG){ 

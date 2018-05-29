@@ -26,6 +26,10 @@ class GameEngine{
         void startGame(vector<vector<Insect*> > & );
         void displayBoard(vector<vector<Insect*> > & );
         void removeDead(vector<vector<Insect*> > & );
+        void turn(vector<vector<Insect*> > & bord);
+        void userChoice(vector<vector<Insect*> > & );
+        void countBees(vector<vector<Insect*> > & , int & );
+        void fireDeath(vector<vector<Insect*> > & board);
 };
 
 #endif
