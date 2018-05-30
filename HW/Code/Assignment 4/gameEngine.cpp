@@ -7,52 +7,87 @@ GameEngine::GameEngine(){
     this->food = 50;
 }
 
-void GameEngine::userChoice(vector<vector<Insect*> > & board){
+void GameEngine::userChoice(vector<vector<Insect*> > & board, int & food){
     string input = "";
     int choice = 0;
     int position = 0;
-    cout << "Would you like to place an ant?(Y/N) ";
-    getline(cin, input);
-    if(input == "y" || input == "Y"){
-        cout << "Would you like to place a: " << endl;
-        cout << "\t1. Harverster" << endl;
-        cout << "\t2. Thrower" << endl;
-        cout << "\t3. Fire" << endl;
-        cout << "\t4. Long Thrower" << endl;
-        cout << "\t5. Short Thrower" << endl;
-        cout << "\t6. Wall" << endl;
-        cout << "\t7. Ninja" << endl;
-        cout << "\t8. Bodyguard" << endl;
-        cout << "\t0. None" << endl;
-    }
-    getline(cin, input);
-    choice = atoi(input.c_str());
 
-    if(choice <1 || choice >8){
-        return;
-    }
-    
-    cout << "Which position would you like to place it on? ";
-    getline(cin, input);
-    position = atoi(input.c_str());
-    int ant_present = 0;    
-	    for(int j =0; j < board[position].size(); j++){
-		    if(board[position][j]->get_type() == BEE ){
-		    }
-		    else if(board[position][j]->get_type() == NINJA){
-			   ant_present++;
-		    }
-	    }
-    if(ant_present == 1 || ant_present == 0)
-    switch(choice){
-        case 1: board[position].push_back(new Harvester); break;
-        case 2: board[position].push_back(new Thrower); break;
-        case 3: board[position].push_back(new Fire); break;
-        case 4: board[position].push_back(new LongT); break;
-        case 5: board[position].push_back(new ShortT); break;
-        case 6: board[position].push_back(new Wall); break;
-        case 7: board[position].push_back(new Ninja); break;
-        case 8: board[position].push_back(new Bodyguard); break;
+    while(true){
+        input = "";
+        choice = 0;
+        position = 0;
+        cout << "Would you like to place an ant?(Y/N) ";
+        getline(cin, input);
+        if(input == "y" || input == "Y"){
+            cout << "Would you like to place a: " << endl;
+            cout << "\t1. Harverster" << endl;
+            cout << "\t2. Thrower" << endl;
+            cout << "\t3. Fire" << endl;
+            cout << "\t4. Long Thrower" << endl;
+            cout << "\t5. Short Thrower" << endl;
+            cout << "\t6. Wall" << endl;
+            cout << "\t7. Ninja" << endl;
+            cout << "\t8. Bodyguard" << endl;
+            cout << "\t0. None" << endl;
+        }
+        getline(cin, input);
+        choice = atoi(input.c_str());
+
+        if(choice <1 || choice >8){
+            return;
+        }
+
+        int temp_food = food;
+        switch(choice){
+            case 1: temp_food -= 2; break;
+            case 2: temp_food -= 4; break;
+            case 3: temp_food -= 4; break;
+            case 4: temp_food -= 3; break;
+            case 5: temp_food -= 3; break;
+            case 6: temp_food -= 4; break;
+            case 7: temp_food -= 6; break;
+            case 8: temp_food -= 4; break;
+
+        }
+        
+        if(food<0){
+            cout << "You don't have enough food! " << endl;
+            continue;
+        }
+
+        food = temp_food;
+
+        cout << "Which position would you like to place it on? ";
+        getline(cin, input);
+        position = atoi(input.c_str());
+        bool body_pres = false;
+        int ant_present = 0;    
+            for(int j =0; j < board[position].size(); j++){
+                if(board[position][j]->get_type() == BEE ){
+                }
+                else if(board[position][j]->get_type() == BODYGUARD){
+                ant_present++;
+                body_pres = true;
+                }
+                else 
+                    ant_present++;
+            }
+        if((ant_present == 1 && body_pres)|| ant_present == 0 || (ant_present == 1 && choice ==8)){
+            switch(choice){
+                case 1: board[position].push_back(new Harvester); break;
+                case 2: board[position].push_back(new Thrower); break;
+                case 3: board[position].push_back(new Fire); break;
+                case 4: board[position].push_back(new LongT); break;
+                case 5: board[position].push_back(new ShortT); break;
+                case 6: board[position].push_back(new Wall); break;
+                case 7: board[position].push_back(new Ninja); break;
+                case 8: board[position].push_back(new Bodyguard); break;
+
+            }
+            break;
+        }
+        else
+            cout << "You can't double stack " << endl;
 
     }
 
@@ -84,15 +119,15 @@ void GameEngine::startGame(vector<vector<Insect*> > & board){
     while(game_run && num_bees > 0){
         board[9].push_back(new Bee);
 
-        displayBoard(board);
-        userChoice(board);
+        displayBoard(board, food);
+        userChoice(board, food);
         turn(board);
         fireDeath(board);
         removeDead(board);
         countBees(board, num_bees);
 
-        for(int j = 0; j < board[6].size(); j++)
-            cout << "Health " << board[6][j]->get_armor() << endl;
+        // for(int j = 0; j < board[6].size(); j++)
+        //     cout << "Health " << board[6][j]->get_armor() << endl;
         // break;
 
     }
@@ -246,7 +281,7 @@ string PrintEntity(vector<vector<Insect*> > & board, int y, int x){
     return temp;
 }
 
-void GameEngine::displayBoard(vector < vector <Insect*> > & vec){
+void GameEngine::displayBoard(vector < vector <Insect*> > & vec, int food){
     // system("clear");
     const string red("\033[0;31m");
     const string green("\033[0;32m");
@@ -262,6 +297,8 @@ void GameEngine::displayBoard(vector < vector <Insect*> > & vec){
             continue;
         }
     }
+
+    cout << "Food: " << food << endl;
     for (int i = 0 ; i < VEC_SIZE; i++){
         cout << "   " << i  << "  ";
     }
@@ -289,4 +326,3 @@ void GameEngine::displayBoard(vector < vector <Insect*> > & vec){
     }
     cout << endl;
 }
-

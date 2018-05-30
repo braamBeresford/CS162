@@ -24,10 +24,10 @@ class GameEngine{
     public:
         GameEngine();
         void startGame(vector<vector<Insect*> > & );
-        void displayBoard(vector<vector<Insect*> > & );
+        void displayBoard(vector<vector<Insect*> > & , int);
         void removeDead(vector<vector<Insect*> > & );
         void turn(vector<vector<Insect*> > & bord);
-        void userChoice(vector<vector<Insect*> > & );
+        void userChoice(vector<vector<Insect*> > &, int& );
         void countBees(vector<vector<Insect*> > & , int & );
         void fireDeath(vector<vector<Insect*> > & board);
 };
