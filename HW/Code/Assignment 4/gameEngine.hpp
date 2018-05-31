@@ -29,7 +29,8 @@ class GameEngine{
         void turn(vector<vector<Insect*> > & bord);
         void userChoice(vector<vector<Insect*> > &, int& );
         void countBees(vector<vector<Insect*> > & , int & );
-        void fireDeath(vector<vector<Insect*> > & board);
+        void fireDeath(vector<vector<Insect*> > & );
+        bool checkBeeWin(vector<vector<Insect*> > & );
 };
 
 #endif

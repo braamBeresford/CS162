@@ -112,11 +112,20 @@ void GameEngine::fireDeath(vector<vector<Insect*> > & board){
         }
     }
 }
+
+bool GameEngine::checkBeeWin(vector<vector<Insect*> > & board){
+    for(int i = 0; i < board[0].size(); i++)
+        if(board[0][i]->get_type() == BEE)
+            return true;
+    
+    return false;
+}
 void GameEngine::startGame(vector<vector<Insect*> > & board){
     int num_bees = 1;
-    bool game_run = true;
+    bool win = false;
+    bool lost = false;
 
-    while(game_run && num_bees > 0){
+    while(!win && !lost && num_bees > 0){
         board[9].push_back(new Bee);
 
         displayBoard(board, food);
@@ -126,10 +135,16 @@ void GameEngine::startGame(vector<vector<Insect*> > & board){
         removeDead(board);
         countBees(board, num_bees);
 
+        lost = checkBeeWin(board);
+
         // for(int j = 0; j < board[6].size(); j++)
         //     cout << "Health " << board[6][j]->get_armor() << endl;
         // break;
+    }
 
+    if(lost){
+        displayBoard(board, food);
+        cout << "The bees have reached your queen! You have lost! " << endl;
     }
 
     // board[2].push_back(new Thrower);
