@@ -259,7 +259,7 @@ void GameEngine::removeDead(vector<vector<Insect*> > & board){
     for(int i =0; i < board.size(); i++){
         for(int j =0; j < board[i].size(); j++)
             if(board[i][j]->get_armor() <= 0){
-                cout << "Im cleaning !" << endl;
+                delete [] board[i][j];
                 board[i].erase(board[i].begin()+j);
             }
     }
