@@ -31,6 +31,7 @@ class GameEngine{
         void countBees(vector<vector<Insect*> > & , int & );
         void fireDeath(vector<vector<Insect*> > & );
         bool checkBeeWin(vector<vector<Insect*> > & );
+        bool playerWin(int );
 };
 
 #endif

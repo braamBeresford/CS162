@@ -16,7 +16,6 @@ void Fire::turn(vector<vector<Insect*> > & board, int &food, int current){
     if(this->armor <= 0){
         for(int i =0; i < board[current].size(); i++){
             if(board[current][i]->get_type() == BEE){
-                cout << "im setting to 0" << endl;
                 board[current][i]->set_armor(-1);
             }
         }

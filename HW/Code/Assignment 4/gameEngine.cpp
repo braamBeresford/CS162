@@ -17,7 +17,21 @@ void GameEngine::userChoice(vector<vector<Insect*> > & board, int & food){
         choice = 0;
         position = 0;
         cout << "Would you like to place an ant?(Y/N) ";
+        
         getline(cin, input);
+        if(input == "killall"){
+            cout << "Cheat activated" << endl;
+            for(int i = 0; i < board.size(); i++){
+                for(int j = 0; j < board[i].size(); j++){
+                    if(board[i][j]->get_type() == BEE){
+                        board[i][j]->set_armor(0);
+                    }
+                }
+            }
+            cout << "Place ant? Y/N" << endl;
+            getline(cin, input);
+        }
+
         if(input == "y" || input == "Y"){
             cout << "Would you like to place a: " << endl;
             cout << "\t1. Harverster" << endl;
@@ -30,6 +44,9 @@ void GameEngine::userChoice(vector<vector<Insect*> > & board, int & food){
             cout << "\t8. Bodyguard" << endl;
             cout << "\t0. None" << endl;
         }
+        else
+            break;
+
         getline(cin, input);
         choice = atoi(input.c_str());
 
@@ -120,31 +137,46 @@ bool GameEngine::checkBeeWin(vector<vector<Insect*> > & board){
     
     return false;
 }
+
+bool GameEngine::playerWin(int num_bees){
+    if(num_bees <= 0)
+        return true;
+
+    return false;
+}
+
+
 void GameEngine::startGame(vector<vector<Insect*> > & board){
     int num_bees = 1;
     bool win = false;
     bool lost = false;
 
-    while(!win && !lost && num_bees > 0){
+    while(!win && !lost){
         board[9].push_back(new Bee);
 
         displayBoard(board, food);
         userChoice(board, food);
         turn(board);
-        fireDeath(board);
+        fireDeath(board);        
         removeDead(board);
         countBees(board, num_bees);
 
-        lost = checkBeeWin(board);
 
-        // for(int j = 0; j < board[6].size(); j++)
-        //     cout << "Health " << board[6][j]->get_armor() << endl;
-        // break;
+        lost = checkBeeWin(board);
+        win = playerWin(num_bees);
+
+        for(int j = 0; j < board[6].size(); j++)
+            cout << "Health " << board[6][j]->get_armor() << endl;
     }
 
     if(lost){
         displayBoard(board, food);
         cout << "The bees have reached your queen! You have lost! " << endl;
+    }
+
+    if(win){
+        displayBoard(board, food);
+        cout << "Congratulations! You have killed all the bees! " << endl;
     }
 
     // board[2].push_back(new Thrower);
@@ -227,6 +259,7 @@ void GameEngine::removeDead(vector<vector<Insect*> > & board){
     for(int i =0; i < board.size(); i++){
         for(int j =0; j < board[i].size(); j++)
             if(board[i][j]->get_armor() <= 0){
+                cout << "Im cleaning !" << endl;
                 board[i].erase(board[i].begin()+j);
             }
     }
