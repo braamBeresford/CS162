@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-	char file_name [256] = "tes.txt";
+	char file_name [256] = "test.txt";
 	fstream f;
 	while (1) {
 		f.open(file_name);

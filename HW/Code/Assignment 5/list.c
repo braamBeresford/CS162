@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 
-int length(struct node* head) {
+int length(struct node* head){
 	int count = 0;
 	int i;
 	int first_time = 0;
@@ -28,7 +28,7 @@ int length(struct node* head) {
 void print(struct node * head, int number) {
 	int i;
 	struct node* current = head;
-	if (head->next == NULL) {
+	if (head == NULL) {
 		printf("There is nothing in this linked list\n" );
 		return;
 	}
@@ -52,7 +52,7 @@ struct node * push(struct node* head, int value) {
 
 	new_node->val = value;
 
-	new_node->next = head->next;
+	new_node->next = head`;
 	head->next = new_node;
 
 	return head;
@@ -132,7 +132,7 @@ struct node *sort_ascending(struct node* head) {
 		un_sorted = 1;
 		current = head;
 		for (i = 0; i < length(head); i++) {
-			if(current->next == NULL)
+			if(current == NULL)
 				continue;
 			else if (current->val > current->next->val) { 
 				temp = current->next->next->next;
@@ -176,10 +176,8 @@ struct node * insert_middle(struct node* head, int index, int value) {
 
 }
 int main() {
-	struct node* head =  malloc(sizeof(struct node));
+	struct node* head =  NULL;
 
-	head->next = NULL;
-	head->val = 0;
 
 	head = push(head, 1);
 	head = push(head, 2);
@@ -210,7 +208,7 @@ int main() {
 
 	// printf("Length %d\n", length(head));
 	print(head, 5);
-	sort_ascending(head);
+	// sort_ascending(head);
 	// putchar('\n');
 	// clear(head);
 	print(head, 5);
