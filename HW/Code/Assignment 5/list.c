@@ -118,70 +118,120 @@ struct node * remove_node(struct node *head, int index) { //works
 	return head;
 }
 
-struct node * swap(struct node* current){
+struct node * swap(struct node* current) {
 	struct node * temp1 = current->next->next->next;
 	struct node * temp2 = current->next->next;
 	struct node * temp3 = current->next;
 
 	current->next = temp2;
 	current->next->next = temp3;
-	current->next->next->next=temp1;
+	current->next->next->next = temp1;
 	return current;
 }
 
+// struct node *sort_ascending2(struct node* head) {
+// 	int i;
+// 	struct node * current = head;
+// 	struct node * temp;
+// 	bool un_sorted;
+// 	do {
+// 		un_sorted = false;
+// 		current = head;
+// 		for (i = 0; i < length(head); i++) {
+// 			if(current->next->next == NULL){
+// 				un_sorted = true;
+// 				printf("Oh no :(\n");
+// 				break;
+// 			}
+// 			if (current->next->val > current->next->next->val) {
+// 				un_sorted = true;
+// 				printf("Actiavted\n");
+// 				current = swap(current);
+// 			}
+// 			current = current->next;
+// 		}
+// 		printf("still running %d\n", un_sorted);
+// 		print(head, 100);
+// 	} while (un_sorted);
+
+
+// 	return head;
+// }
+
+// struct node *sort_ascending(struct node* head) {
+// 	bool done = false;
+
+// 	while(!done){
+// 		struct node * current = head;
+// 		struct node * middle = head;
+// 		struct node * next = head->next;
+
+// 		done = true;
+
+// 		while(next){
+// 			print(head, 100);
+// 			putchar('\n');
+// 			if(middle->val > next->val){
+// 				middle->next = next->next;
+// 				next->next = middle;
+// 				current = next;
+
+// 				done = false;
+// 			}
+// 		}
+
+
+// 		current = middle->next;
+// 		middle = next;
+// 		next = next->next;
+// 	}
+
+// 	return head;
+// }
+
 struct node *sort_ascending(struct node* head) {
-	int i;
-	struct node * current = head;
-	struct node * temp;
-	bool un_sorted;
-	do {
-		un_sorted = false;
-		current = head;
-		for (i = 0; i < length(head); i++) {
-			if(current->next->next == NULL){
-				un_sorted = true;
-				printf("Oh no :(\n");
-				break;
+	bool done = false;
+	struct node * next;
+	while ( ! done ) { 
+		done = true;
+		next = head;
+		while ( next->next ) { 
+			if ( next->val > next->next->val ) {
+				done = false;
+				int tmp = next->val;   
+				next->val = next->next->val;
+				next->next->val = tmp;
 			}
-			if (current->next->val > current->next->next->val) {
-				un_sorted = true;
-				printf("Actiavted\n");
-				current = swap(current);
-			}
-			current = current->next;
+			next = next->next;
 		}
-		printf("still running %d\n", un_sorted);
-		print(head, 100);
-	} while (un_sorted);
-
+	}
 
 	return head;
 }
+// struct node *sort_descending(struct node* head) {
+// 	int i;
+// 	struct node * current = head;
+// 	struct node * temp;
+// 	bool un_sorted;
+// 	do {
+// 		un_sorted = true;
+// 		current = head;
+// 		for (i = 0; i < length(head); i++) {
+// 			if(current->next->next == NULL)
+// 				return head;
+// 			if (current->next->val < current->next->next->val) {
+// 				un_sorted = false;
+// 				current = swap(current);
+// 			}
+// 			current = current->next;
+// 		}
 
-struct node *sort_descending(struct node* head) {
-	int i;
-	struct node * current = head;
-	struct node * temp;
-	bool un_sorted;
-	do {
-		un_sorted = true;
-		current = head;
-		for (i = 0; i < length(head); i++) {
-			if(current->next->next == NULL)
-				return head;
-			if (current->next->val < current->next->next->val) {
-				un_sorted = false;
-				current = swap(current);
-			}
-			current = current->next;
-		}
-
-	} while (un_sorted);
+// 	} while (un_sorted);
 
 
-	return head;
+// 	return head;
 
-}
+// }
 
 struct node * insert_middle(struct node* head, int index, int value) {
 	struct node* current = head;
@@ -218,10 +268,10 @@ int main() {
 
 	head->val;
 
-	
+
 	head = append(head, 4);
-	printf("VALLL%d\n ", head->val);
-	return 0;
+	// printf("VALLL%d\n ", head->val);
+	// return 0;
 	head = append(head, 5);
 	head = append(head, 2);
 	head = append(head, 3);
@@ -259,7 +309,7 @@ int main() {
 	// print(head, 5);
 	// printf("Length %d\n", length(head));
 	// putchar('\n');
-	
+
 	// clear(head);
 	// print(head, 5);
 	return 0;
