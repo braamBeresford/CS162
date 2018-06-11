@@ -119,109 +119,78 @@ struct node * remove_node(struct node *head, int index) { //works
 }
 
 
-// struct node *sort_ascending2(struct node* head) {
-// 	int i;
-// 	struct node * current = head;
-// 	struct node * temp;
-// 	bool un_sorted;
-// 	do {
-// 		un_sorted = false;
-// 		current = head;
-// 		for (i = 0; i < length(head); i++) {
-// 			if(current->next->next == NULL){
-// 				un_sorted = true;
-// 				printf("Oh no :(\n");
-// 				break;
-// 			}
-// 			if (current->next->val > current->next->next->val) {
-// 				un_sorted = true;
-// 				printf("Actiavted\n");
-// 				current = swap(current);
-// 			}
-// 			current = current->next;
-// 		}
-// 		printf("still running %d\n", un_sorted);
-// 		print(head, 100);
-// 	} while (un_sorted);
 
 
-// 	return head;
-// }
-
-// struct node *sort_ascending(struct node* head) {
-// 	bool done = false;
-
-// 	while(!done){
-// 		struct node * current = head;
-// 		struct node * middle = head;
-// 		struct node * next = head->next;
-
-// 		done = true;
-
-// 		while(next){
-// 			print(head, 100);
-// 			putchar('\n');
-// 			if(middle->val > next->val){
-// 				middle->next = next->next;
-// 				next->next = middle;
-// 				current = next;
-
-// 				done = false;
-// 			}
-// 		}
-
-
-// 		current = middle->next;
-// 		middle = next;
-// 		next = next->next;
-// 	}
-
-// 	return head;
-// }
-
-struct node *sort_ascending(struct node* head) {
-	bool sorted = false;
-	struct node * next;
-	while (!sorted) { 
-		sorted = true;
-		next = head;
-		while ( next->next ) { 
-			if ( next->val > next->next->val ) {
-				sorted = false;
-				int tmp = next->val;   
-				next->val = next->next->val;
-				next->next->val = tmp;
-			}
-			next = next->next;
-		}
-	}
-
-	return head;
+struct node *swap( struct node *a, struct node *b )
+{
+    a->next = b->next;
+    b->next = a;
+    return b;
 }
-// struct node *sort_descending(struct node* head) {
-// 	int i;
-// 	struct node * current = head;
-// 	struct node * temp;
-// 	bool un_sorted;
-// 	do {
-// 		un_sorted = true;
-// 		current = head;
-// 		for (i = 0; i < length(head); i++) {
-// 			if(current->next->next == NULL)
-// 				return head;
-// 			if (current->next->val < current->next->next->val) {
-// 				un_sorted = false;
-// 				current = swap(current);
-// 			}
-// 			current = current->next;
-// 		}
 
-// 	} while (un_sorted);
+struct node *sort_ascending( struct node *head )
+{
 
+	if(head ==  NULL)
+		return head;
+    struct node *temp1, *temp2, *current;
+    bool unsorted = true;
 
-// 	return head;
+    current = (struct node *)malloc(sizeof(struct node));
 
-// }
+    current->next = head;
+    if(head->next != NULL) {
+
+        while( unsorted ) {
+            unsorted = false;
+            temp2 = current;
+            temp1 = current->next;
+            while( temp1->next != NULL ) {
+                if( temp1->val > temp1->next->val ) {
+                    temp2->next = swap( temp1, temp1->next );
+                    unsorted = true;
+                }
+                temp2 = temp1;
+                if(temp1->next)
+                    temp1 = temp1->next;
+            }
+        }
+    }
+    temp1 = current->next;
+    free( current );
+    return temp1;
+}
+
+struct node *sort_descending(struct node* head) {
+	if(head ==  NULL)
+		return head;
+    struct node *temp1, *temp2, *current;
+    bool unsorted = true;
+
+    current = (struct node *)malloc(sizeof(struct node));
+
+    current->next = head;
+    if(head->next != NULL) {
+
+        while( unsorted ) {
+            unsorted = false;
+            temp2 = current;
+            temp1 = current->next;
+            while( temp1->next != NULL ) {
+                if( temp1->val < temp1->next->val ) {
+                    temp2->next = swap( temp1, temp1->next );
+                    unsorted = true;
+                }
+                temp2 = temp1;
+                if(temp1->next)
+                    temp1 = temp1->next;
+            }
+        }
+    }
+    temp1 = current->next;
+    free( current );
+    return temp1;
+}
 
 struct node * insert_middle(struct node* head, int index, int value) {
 	struct node* current = head;
@@ -252,55 +221,4 @@ struct node * insert_middle(struct node* head, int index, int value) {
 	return head;
 
 
-}
-int main() {
-	struct node* head =  NULL;
-
-	head->val;
-
-
-	head = append(head, 4);
-	// printf("VALLL%d\n ", head->val);
-	// return 0;
-	head = append(head, 5);
-	head = append(head, 2);
-	head = append(head, 3);
-	head = append(head, 6);
-	head = append(head, 8);
-	head = append(head, 7);
-	head = append(head, 89);
-	head = append(head, 10);
-	head = append(head, 9);
-
-	print(head, 100);
-	// head->next = swap(head->next);
-	head = sort_ascending(head);
-	// head = sort_descending(head);
-	print(head, 100);
-	// printf("Length %d\n", length(head));
-	// print(head, 5);
-	// // // head = clear(head);
-	// head = remove_node(head, 2);
-	// putchar('\n');
-
-
-
-	// head = insert_middle(head, 3, 8);
-
-	// printf("Length %d\n", length(head));
-
-	// print(head, 5);
-
-	// head = insert_middle(head, 4, 8);
-
-	// print(head, 5);
-	// printf("Length %d\n", length(head));
-	// head = remove_node(head, 2);
-	// print(head, 5);
-	// printf("Length %d\n", length(head));
-	// putchar('\n');
-
-	// clear(head);
-	// print(head, 5);
-	return 0;
 }
