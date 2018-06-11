@@ -118,16 +118,6 @@ struct node * remove_node(struct node *head, int index) { //works
 	return head;
 }
 
-struct node * swap(struct node* current) {
-	struct node * temp1 = current->next->next->next;
-	struct node * temp2 = current->next->next;
-	struct node * temp3 = current->next;
-
-	current->next = temp2;
-	current->next->next = temp3;
-	current->next->next->next = temp1;
-	return current;
-}
 
 // struct node *sort_ascending2(struct node* head) {
 // 	int i;
@@ -190,14 +180,14 @@ struct node * swap(struct node* current) {
 // }
 
 struct node *sort_ascending(struct node* head) {
-	bool done = false;
+	bool sorted = false;
 	struct node * next;
-	while ( ! done ) { 
-		done = true;
+	while (!sorted) { 
+		sorted = true;
 		next = head;
 		while ( next->next ) { 
 			if ( next->val > next->next->val ) {
-				done = false;
+				sorted = false;
 				int tmp = next->val;   
 				next->val = next->next->val;
 				next->next->val = tmp;
