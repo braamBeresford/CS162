@@ -119,7 +119,7 @@ struct node * append(struct node* head, int value) { //works
  ** Pre-Conditions: Head not null
  ** Post-Conditions: Returns head pointer
  *********************************************************************/
-struct node * clear(struct node * head) {//Works
+struct node * clear(struct node * head) {
 	struct node* current = head;
 	struct node* next;
 	while (current != NULL) {
@@ -296,56 +296,3 @@ struct node * insert_middle(struct node* head, int index, int value) {
 	return head;
 
 }
-
-
-// int main() {
-// 	struct node* head =  NULL;
-
-// 	head->val;
-
-
-// 	head = append(head, 4);
-// 	// printf("VALLL%d\n ", head->val);
-// 	// return 0;
-// 	head = push(head, 5);
-// 	head = append(head, 2);
-// 	head = append(head, 3);
-// 	head = push(head, 6);
-// 	head = append(head, 8);
-// 	head = append(head, 7);
-// 	head = append(head, 89);
-// 	head = append(head, 10);
-// 	head = append(head, 9);
-
-// 	print(head, 100);
-// 	// head->next = swap(head->next);
-// 	head = sort_ascending(head);
-// 	// head = sort_descending(head);
-// 	print(head, 100);
-// 	// printf("Length %d\n", length(head));
-// 	// print(head, 5);
-// 	// // // head = clear(head);
-// 	// head = remove_node(head, 2);
-// 	// putchar('\n');
-
-
-
-// 	// head = insert_middle(head, 3, 8);
-
-// 	// printf("Length %d\n", length(head));
-
-// 	// print(head, 5);
-
-// 	// head = insert_middle(head, 4, 8);
-
-// 	// print(head, 5);
-// 	// printf("Length %d\n", length(head));
-// 	// head = remove_node(head, 2);
-// 	// print(head, 5);
-// 	// printf("Length %d\n", length(head));
-// 	// putchar('\n');
-
-// 	clear(head);
-// 	// print(head, 5);
-// 	return 0;
-// }
